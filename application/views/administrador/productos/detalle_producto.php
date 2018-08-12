@@ -221,7 +221,7 @@
                                 
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class=" icon-layers font-blue"></i>
+                                        <i class=" glyphicon glyphicon-film font-blue"></i>
                                             <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
                                                 Videos  <span id="peticion" ></span>  
                                             </span> 
@@ -242,24 +242,17 @@
                                                 <div class="mt-list-container list-news ext-2">
                                                     <ul>
                                                         <?php
-                                                        if ( !empty($fotosProducto) ){
-                                                            foreach ($fotosProducto as $key => $valFotosProducto) { ?>  
+                                                        if ( !empty($videosProducto) ){
+                                                            foreach ($videosProducto as $key => $valVideosProducto) { ?>  
                                                         <li class="mt-list-item">
-                                                            <div class="list-thumb">
-                                                                 <img alt="" src="<?php echo base_url()."/img.muebles/".$valFotosProducto['path']  ?>">
-                                                            </div>
                                                             <h3 class="uppercase">
-                                                                Posición <?php echo $valFotosProducto['orden'] ?> <?php if( $valFotosProducto['orden'] == 1 ){ ?><i class="fa fa-asterisk"></i> <?php } ?> 
-
-                                                                <?php if( $valFotosProducto['orden'] != 1 ){ ?>
-                                                                <a href="javascript:;" onClick="marcarComoPrincipal(<?php echo $valFotosProducto['producto_id'] ?>,<?php echo $valFotosProducto['id_foto'] ?>);" title="Marcar como Principal" class="btn btn-icon-only blue">
-                                                                    <i class="fa icon-link"></i>
+                                                            Video: <?php echo $valVideosProducto['nombre'] ?> 
+                                                               <a href="<?php echo $valVideosProducto['path'] ?> " target="_blank" title="Ver Video" class="btn btn-icon-only blue">
+                                                                    <i class="glyphicon glyphicon-film"></i>
                                                                 </a>
-                                                                <?php } ?>
-                                                                <a href="javascript:;" onClick="eliminarFoto(<?php echo $valFotosProducto['id_foto'] ?>,<?php echo $valFotosProducto['producto_id'] ?>);" title="Eliminar Foto" class="btn btn-icon-only red">
+                                                                <a href="javascript:;" onClick="eliminarVideo(<?php echo $valVideosProducto['id_video'] ?>,<?php echo $valVideosProducto['producto_id'] ?>);" title="Eliminar Video" class="btn btn-icon-only red">
                                                                     <i class="fa fa-times"></i>
                                                                 </a>
-                                                                 
                                                             </h3>
                                                             <p></p>
                                                         </li>
@@ -376,7 +369,7 @@
                                             <!-- BEGIN FORM-->                                   
                                                 <div class="form-body">
                                                     <div class="form-group form-md-line-input form-md-floating-label">
-                                                        <input type="text" name="userfile" size="20" />
+                                                        <input type="text" name="file_name" id="fila_name" size="20" />
                                                         <label for="usuario">Video</label>
                                                         <div class="form-control-focus"> </div>
                                                     </div>

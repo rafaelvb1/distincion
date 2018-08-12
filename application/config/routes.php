@@ -121,6 +121,7 @@ $route['admin/add-video-producto']                  = 'administrador/ProductosCt
 $route['admin/salvar-producto']                      = 'administrador/ProductosCtrl/salvarProducto';
 $route['admin/marcar-foto-principal/(:num)/(:num)']  = 'administrador/ProductosCtrl/marcarFotoPrincipal/$1/$2';
 $route['admin/foto-eliminar/(:num)']                 = 'administrador/ProductosCtrl/eliminarFoto/$1';
+$route['admin/video-eliminar/(:num)']                 = 'administrador/ProductosCtrl/eliminarVideo/$1';
 
 
 // ================================================================ API ========================================

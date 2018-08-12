@@ -5,7 +5,8 @@ class ProductosCtrl extends CI_Controller {
 
 	private $productosTabla           = "productos";
 	private $productoFotosTabla       = "producto_fotos";
-    private $videosTabla       = "videos";
+	private $productoVideosTabla      = "producto_videos";
+    //private $videosTabla       = "videos";
 	private $productosTienda          = "producto_tienda";
 	private $urlRedireccionProductos  = "admin/listado-productos";
 	private $urlRedirDetalleProductos = "admin/detalle-producto";
@@ -62,6 +63,7 @@ class ProductosCtrl extends CI_Controller {
 		$data['productoId']      = $productoId;
 		$data['tiendasProducto'] = $this->mProductos->obtenerTiendasPorProducto($productoId);
 		$data['fotosProducto']   = $this->entidad->getModelBase("producto_fotos",'id_foto,path,orden,producto_id','orden','ASC',array('producto_id'=>$productoId));
+		$data['videosProducto']  = $this->entidad->getModelBase("producto_videos",'id_video,path,producto_id,nombre','id_video','ASC',array('producto_id'=>$productoId));
 
 		// CATALOGOS
 		$data['listadoColores']    = $this->entidad->getModelBase("ctg_colores",'id,nombre','nombre','ASC',null);
@@ -209,9 +211,9 @@ class ProductosCtrl extends CI_Controller {
 	}
     function addVideo(){
 
-		$data = $this->input->post();
+		$dataVideos = $this->input->post();
 
-            $this->entidad->save($this->videosTabla,array('producto_id'=>$data['id_producto'],'path'=>$data['ligaVideo'] ));	
+            $this->entidad->save($this->productoVideosTabla,array('producto_id'=>$dataVideos['id_producto'],'path'=>$dataVideos['ligaVideo'],'nombre'=>$dataVideos['file_name']));	
 
             $mensaje = "La liga se agrego con éxito.";
 			$tipoFlashData = "exitoso";
@@ -219,7 +221,14 @@ class ProductosCtrl extends CI_Controller {
     
         $this->session->set_flashdata($tipoFlashData,$mensaje);
 
-		redirect($this->urlRedirDetalleProductos."/".$data['id_producto']);
+		redirect($this->urlRedirDetalleProductos."/".$dataVideos['id_producto']);
+
+	}
+	function eliminarVideo($videoId){
+
+		$this->entidad->delete($this->productoVideosTabla,"id_video",$videoId);
+
+		$this->session->set_flashdata("exitoso","video Actualizada");
 
 	}
 
