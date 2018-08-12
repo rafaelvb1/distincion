@@ -117,6 +117,7 @@ $route['admin/vendedor-estadisticas/(:num)']           = 'administrador/Vendedor
 $route['admin/listado-productos']                    = 'administrador/ProductosCtrl/dashboardProductos';
 $route['admin/detalle-producto/(:num)']              = 'administrador/ProductosCtrl/verProducto/$1';
 $route['admin/subir-foto-producto']                  = 'administrador/ProductosCtrl/subirFoto';
+$route['admin/add-video-producto']                  = 'administrador/ProductosCtrl/addVideo';
 $route['admin/salvar-producto']                      = 'administrador/ProductosCtrl/salvarProducto';
 $route['admin/marcar-foto-principal/(:num)/(:num)']  = 'administrador/ProductosCtrl/marcarFotoPrincipal/$1/$2';
 $route['admin/foto-eliminar/(:num)']                 = 'administrador/ProductosCtrl/eliminarFoto/$1';

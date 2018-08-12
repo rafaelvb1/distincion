@@ -5,6 +5,7 @@ class ProductosCtrl extends CI_Controller {
 
 	private $productosTabla           = "productos";
 	private $productoFotosTabla       = "producto_fotos";
+    private $videosTabla       = "videos";
 	private $productosTienda          = "producto_tienda";
 	private $urlRedireccionProductos  = "admin/listado-productos";
 	private $urlRedirDetalleProductos = "admin/detalle-producto";
@@ -206,7 +207,21 @@ class ProductosCtrl extends CI_Controller {
 		redirect($this->urlRedirDetalleProductos."/".$data['id_producto']);
 
 	}
+    function addVideo(){
 
+		$data = $this->input->post();
+
+            $this->entidad->save($this->videosTabla,array('producto_id'=>$data['id_producto'],'path'=>$data['ligaVideo'] ));	
+
+            $mensaje = "La liga se agrego con éxito.";
+			$tipoFlashData = "exitoso";
+
+    
+        $this->session->set_flashdata($tipoFlashData,$mensaje);
+
+		redirect($this->urlRedirDetalleProductos."/".$data['id_producto']);
+
+	}
 
 
 

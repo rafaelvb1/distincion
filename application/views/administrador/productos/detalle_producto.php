@@ -213,8 +213,67 @@
 
                             </div>
                             <!-- END VALIDATION STATES-->
-                        </div>                           
+                        </div>
+                        <!--Videos inicio-->
+                        <div class="col-md-6">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                                
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class=" icon-layers font-blue"></i>
+                                            <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
+                                                Videos  <span id="peticion" ></span>  
+                                            </span> 
+                                    </div>
+                                    <?php if( $productoId > 0 ){ ?>
+                                    <div class="actions">
+                                        <a href="#addVideo" data-toggle="modal" class="btn blue btn-sm green">
+                                            <i class="fa fa-plus"></i> Agregar Video 
+                                        </a>
+                                    </div>
+                                    <?php } ?>           
+                                </div>
 
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->        
+                                        <div class="form-body">
+                                            <div class="mt-element-list">    
+                                                <div class="mt-list-container list-news ext-2">
+                                                    <ul>
+                                                        <?php
+                                                        if ( !empty($fotosProducto) ){
+                                                            foreach ($fotosProducto as $key => $valFotosProducto) { ?>  
+                                                        <li class="mt-list-item">
+                                                            <div class="list-thumb">
+                                                                 <img alt="" src="<?php echo base_url()."/img.muebles/".$valFotosProducto['path']  ?>">
+                                                            </div>
+                                                            <h3 class="uppercase">
+                                                                Posición <?php echo $valFotosProducto['orden'] ?> <?php if( $valFotosProducto['orden'] == 1 ){ ?><i class="fa fa-asterisk"></i> <?php } ?> 
+
+                                                                <?php if( $valFotosProducto['orden'] != 1 ){ ?>
+                                                                <a href="javascript:;" onClick="marcarComoPrincipal(<?php echo $valFotosProducto['producto_id'] ?>,<?php echo $valFotosProducto['id_foto'] ?>);" title="Marcar como Principal" class="btn btn-icon-only blue">
+                                                                    <i class="fa icon-link"></i>
+                                                                </a>
+                                                                <?php } ?>
+                                                                <a href="javascript:;" onClick="eliminarFoto(<?php echo $valFotosProducto['id_foto'] ?>,<?php echo $valFotosProducto['producto_id'] ?>);" title="Eliminar Foto" class="btn btn-icon-only red">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                                 
+                                                            </h3>
+                                                            <p></p>
+                                                        </li>
+                                                        <?php } } ?>
+                                                    </ul>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                </div>
+
+                            </div>
+                            <!-- END VALIDATION STATES-->
+                        </div>
+                        <!--Videos fin-->
                         <div class="col-md-12">
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
@@ -296,4 +355,50 @@
                             <!-- /.modal-dialog -->
                             <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
                     </form>
-</div>                                     
+</div> 
+<div class="modal fade" id="addVideo" tabindex="-1" role="addVideo" aria-hidden="true">
+                        <?php echo form_open_multipart('admin/add-video-producto');?>
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                    </div>
+                                    <div class="portlet light portlet-fit portlet-form bordered">
+                                        
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class=" icon-layers font-blue"></i>
+                                                    <span class="caption-subject font-blue sbold uppercase">Agregar liga video</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="portlet-body">
+                                            <!-- BEGIN FORM-->                                   
+                                                <div class="form-body">
+                                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                                        <input type="text" name="userfile" size="20" />
+                                                        <label for="usuario">Video</label>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                                        <input type="text" value="" class="form-control" name="ligaVideo" id="ligaVideo">
+                                                        <label for="nombre">Liga Video</label>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>  
+
+                                                  
+                                                                                                          
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn green">Agregar</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                    </div>                               
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                            <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
+                    </form>
+</div>
