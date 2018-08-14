@@ -32,7 +32,9 @@ class Productos_model extends CI_Model {
                 masaje.nombre masaje_nombre,
                 pro.usuario_creacion creado_por,
                 pro.fecha_creacion,
-                pro.sku
+                pro.sku,
+                pro.mecanismo,
+                pro.masaje
                 FROM 
                 productos pro
                 inner join ctg_categorias cat on cat.id = pro.categoria_id

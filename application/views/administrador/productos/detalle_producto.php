@@ -108,9 +108,7 @@
                                                 <input type="text" value="<?php echo isset( $detalleProducto[0]['sku']) ? $detalleProducto[0]['sku'] :'' ?>" class="form-control" name="sku" id="sku">
                                                 <label for="nombre">SKU</label>
                                                 <div class="form-control-focus"> </div>
-                                            </div>   
- 
-
+                                            </div>  
                                         </div>
                                 </div>
                             </div>
@@ -267,6 +265,110 @@
                             <!-- END VALIDATION STATES-->
                         </div>
                         <!--Videos fin-->
+                        <div class="col-md-6">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                                
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class=" glyphicon glyphicon-camera font-blue"></i>
+                                            <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
+                                                Fotos Mecanismo <span id="peticion" ></span>  
+                                            </span> 
+                                    </div>
+                                    <?php if( $productoId > 0 ){ ?>
+                                    <div class="actions">
+                                        <?php if ( empty($detalleProducto[0]['masaje'] ) ){?> 
+                                            <a href="#subirFotoMecanismo" data-toggle="modal" class="btn blue btn-sm green">
+                                                <i class="fa fa-plus"></i> Agregar Foto Mecanismo
+                                            </a>
+                                        <?php }?>
+                                    </div>
+                                    <?php } ?>           
+                                </div>
+
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->   
+                                        <div class="form-body">
+                                            <div class="mt-element-list">    
+                                                <div class="mt-list-container list-news ext-2">
+                                                    <ul>
+                                                        <?php
+                                                        if ( !empty($detalleProducto[0]['mecanismo'] ) ){?>  
+                                                        <li class="mt-list-item">
+                                                            <div class="list-thumb">
+                                                                 <img alt="" src="<?php echo base_url()."/img.muebles/".$detalleProducto[0]['mecanismo']  ?>">
+                                                            </div>
+                                                            <h3 class="uppercase">
+                                                                <a href="javascript:;" onClick="eliminarFotoMecanismo(<?php echo $detalleProducto[0]['id_producto'] ?>,<?php echo $detalleProducto[0]['id_producto'] ?>);" title="Eliminar Foto mecanismo" class="btn btn-icon-only red">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                                 
+                                                            </h3>
+                                                            <p></p>
+                                                        </li>
+                                                        <?php  } ?>
+                                                    </ul>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                </div>
+
+                            </div>
+                            <!-- END VALIDATION STATES-->
+                        </div>
+                        <div class="col-md-6">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                                
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class=" glyphicon glyphicon-camera font-blue"></i>
+                                            <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
+                                                Fotos Masaje <span id="peticion" ></span>  
+                                            </span> 
+                                    </div>
+                                    <?php if( $productoId > 0 ){ ?>
+                                    <div class="actions">
+                                        <?php if ( empty($detalleProducto[0]['masaje'] ) ){?> 
+                                            <a href="#subirFotoMasaje" data-toggle="modal" class="btn blue btn-sm green">
+                                                <i class="fa fa-plus"></i> Agregar Foto Masaje
+                                            </a>
+                                        <?php } ?>  
+                                    </div>
+                                    <?php } ?>           
+                                </div>
+
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->   
+                                        <div class="form-body">
+                                            <div class="mt-element-list">    
+                                                <div class="mt-list-container list-news ext-2">
+                                                    <ul>
+                                                        <?php
+                                                        if ( !empty($detalleProducto[0]['masaje'] ) ){?>  
+                                                        <li class="mt-list-item">
+                                                            <div class="list-thumb">
+                                                                 <img alt="" src="<?php echo base_url()."/img.muebles/".$detalleProducto[0]['masaje']  ?>">
+                                                            </div>
+                                                            <h3 class="uppercase">
+                                                                <a href="javascript:;" onClick="eliminarFotoMasaje(<?php echo $detalleProducto[0]['id_producto'] ?>,<?php echo $detalleProducto[0]['id_producto'] ?>);" title="Eliminar Foto Masaje" class="btn btn-icon-only red">
+                                                                    <i class="fa fa-times"></i>
+                                                                </a>
+                                                                 
+                                                            </h3>
+                                                            <p></p>
+                                                        </li>
+                                                        <?php  } ?>
+                                                    </ul>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                </div>
+
+                            </div>
+                            <!-- END VALIDATION STATES-->
+                        </div>
                         <div class="col-md-12">
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
@@ -395,3 +497,81 @@
                             <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
                     </form>
 </div>
+<div class="modal fade" id="subirFotoMecanismo" tabindex="-1" role="subirFotoMecanismo" aria-hidden="true">
+                        <?php echo form_open_multipart('admin/subir-fotomecanismo-producto');?>
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                    </div>
+                                    <div class="portlet light portlet-fit portlet-form bordered">
+                                        
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class=" icon-layers font-blue"></i>
+                                                    <span class="caption-subject font-blue sbold uppercase">Subir Foto Mecanismo</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="portlet-body">
+                                            <!-- BEGIN FORM-->                                   
+                                                <div class="form-body">
+                                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                                        <input type="file" name="userfile" size="20" />
+                                                        <label for="usuario">Foto Mecanismo</label>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                                                                          
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn green">Crear</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                    </div>                               
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                            <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
+                    </form>
+</div> 
+<div class="modal fade" id="subirFotoMasaje" tabindex="-1" role="subirFotoMasaje" aria-hidden="true">
+                        <?php echo form_open_multipart('admin/subir-fotomasaje-producto');?>
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                    </div>
+                                    <div class="portlet light portlet-fit portlet-form bordered">
+                                        
+                                        <div class="portlet-title">
+                                            <div class="caption">
+                                                <i class=" icon-layers font-blue"></i>
+                                                    <span class="caption-subject font-blue sbold uppercase">Subir Foto Masaje</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="portlet-body">
+                                            <!-- BEGIN FORM-->                                   
+                                                <div class="form-body">
+                                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                                        <input type="file" name="userfile" size="20" />
+                                                        <label for="usuario">Foto Masaje</label>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>
+                                                                                                          
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn green">Crear</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                    </div>                               
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                            <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
+                    </form>
+</div> 
