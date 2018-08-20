@@ -224,6 +224,8 @@
                                                 Videos  <span id="peticion" ></span>  
                                             </span> 
                                     </div>
+
+
                                     <?php if( $productoId > 0 ){ ?>
                                     <div class="actions">
                                         <a href="#addVideo" data-toggle="modal" class="btn blue btn-sm green">
@@ -254,6 +256,15 @@
                                                             </h3>
                                                             <p></p>
                                                         </li>
+
+                                                   
+
+                                                        <iframe width="420" height="315" 
+                                                        src="<?php echo $valVideosProducto['path'] ?>" 
+                                                        frameborder="0" allowfullscreen>
+                                                        </iframe>
+
+                                                        
                                                         <?php } } ?>
                                                     </ul>
                                                 </div>  
@@ -265,7 +276,7 @@
                             <!-- END VALIDATION STATES-->
                         </div>
                         <!--Videos fin-->
-                        <div class="col-md-6">
+                        <div class="col-md-6" hidden>
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
                                 
@@ -317,7 +328,7 @@
                             </div>
                             <!-- END VALIDATION STATES-->
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" hidden>
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
                                 
