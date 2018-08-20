@@ -482,8 +482,8 @@
                                             <!-- BEGIN FORM-->                                   
                                                 <div class="form-body">
                                                     <div class="form-group form-md-line-input form-md-floating-label">
-                                                        <input type="text" name="file_name" id="fila_name" size="20" />
-                                                        <label for="usuario">Video</label>
+                                                        <input type="text" value="" class="form-control" name="file_name" id="fila_name"  />    
+                                                        <label for="usuario">Nombre video</label>    
                                                         <div class="form-control-focus"> </div>
                                                     </div>
                                                     <div class="form-group form-md-line-input form-md-floating-label">
