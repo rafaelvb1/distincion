@@ -259,10 +259,10 @@
 
                                                    
 
-                                                        <iframe width="420" height="315" 
+                                                        <!--<iframe width="420" height="315" 
                                                         src="<?php echo $valVideosProducto['path'] ?>" 
                                                         frameborder="0" allowfullscreen>
-                                                        </iframe>
+                                                        </iframe>-->
 
                                                         
                                                         <?php } } ?>
@@ -290,7 +290,7 @@
                                     <?php if( $productoId > 0 ){ ?>
                                     <div class="actions">
                                         <?php if ( empty($detalleProducto[0]['masaje'] ) ){?> 
-                                            <a href="#subirFotoMecanismo" data-toggle="modal" class="btn blue btn-sm green">
+                                            <a href="#subirMultimediaMecanismo" data-toggle="modal" class="btn blue btn-sm green">
                                                 <i class="fa fa-plus"></i> Agregar Foto Mecanismo
                                             </a>
                                         <?php }?>
@@ -508,8 +508,8 @@
                             <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
                     </form>
 </div>
-<div class="modal fade" id="subirFotoMecanismo" tabindex="-1" role="subirFotoMecanismo" aria-hidden="true">
-                        <?php echo form_open_multipart('admin/subir-fotomecanismo-producto');?>
+<div class="modal fade" id="subirMultimediaMecanismo" tabindex="-1" role="subirMultimediaMecanismo" aria-hidden="true">
+                        <?php echo form_open_multipart('admin/subir-multimedia-mecanismo');?>
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

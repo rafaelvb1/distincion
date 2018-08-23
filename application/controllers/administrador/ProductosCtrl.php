@@ -231,6 +231,35 @@ class ProductosCtrl extends CI_Controller {
 		$this->session->set_flashdata("exitoso","video Actualizada");
 
 	}
+	function subirMultimediaMecanismo(){
+
+		$datos = $this->input->post();
+
+		$idProducto = $datos['id_producto'];
+
+		unset($datos["id_producto"]);
+		unset($datos["accion"]);
+
+			// # MODIFICAR
+
+			$datos['usuario_modificacion'] = $this->usuarioSesion;
+			$datos['fecha_modificacion']   = HOY;
+
+			$respuesta = $this->entidad->update($this->productosTabla,"id_producto",$idProducto,$datos);
+		
+
+		if ($respuesta > 0) {
+			$mensaje = "El archivo multimedia fue agregado con éxito.";
+			$tipoFlashData = "exitoso";
+		}else{
+			$mensaje = "El archivo multimedia no puedo ser agregado";
+			$tipoFlashData = "error";
+		}
+
+		$this->session->set_flashdata($tipoFlashData,$mensaje);
+
+		redirect($this->urlRedireccionProductos);
+	}
 
 
 
