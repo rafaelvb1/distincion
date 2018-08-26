@@ -176,14 +176,17 @@ class Vendedor extends REST_Controller {
 			$productoId= intval($productoId);
 			$mueble = $this->mProducto->obtenerProductos($productoId);
 			$fotos  = $this->entidad->getModelBase("producto_fotos",'id_foto,path,orden,producto_id','orden','ASC',array('producto_id'=>$productoId));
-			$arr = array();
+            $videos  = $this->entidad->getModelBase("producto_videos",'id_video,path,nombre','id_video','ASC',array('producto_id'=>$productoId));
+                  
+            $arr = array();
 			if(!empty($fotos)) {
 			    foreach($fotos as $val) {
 			        $val['path'] = $val['path'] != '' &&  file_exists( $_SERVER['DOCUMENT_ROOT'].'/img.muebles/'.$val['path'] ) ? base_url().'img.muebles/'.$val['path'] :  base_url().'img.muebles/no-image.png' ;
 			        $arr[] = $val;
 			    }
 			}
-			$mueble['fotos'] = $arr;
+            $mueble['fotos'] = $arr;
+            $mueble['videos'] = $videos;
 			
 			if(!empty($mueble)){
 			     $response = array("status" => "true", "message" => "data found", "data" => $mueble);
