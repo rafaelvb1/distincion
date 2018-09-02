@@ -115,7 +115,7 @@
                             <!-- END VALIDATION STATES-->
                         </div>
 
-
+                       
                         <div class="col-md-6">
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
@@ -259,10 +259,10 @@
 
                                                    
 
-                                                        <iframe width="420" height="315" 
+                                                        <!--<iframe width="420" height="315" 
                                                         src="<?php echo $valVideosProducto['path'] ?>" 
                                                         frameborder="0" allowfullscreen>
-                                                        </iframe>
+                                                        </iframe>-->
 
                                                         
                                                         <?php } } ?>
@@ -380,70 +380,6 @@
                             </div>
                             <!-- END VALIDATION STATES-->
                         </div>
-                        <?php if( $detalleProducto[0]['id_producto_especial'] ==null ){ ?>
-                        <div class="col-md-12">
-                        
-                        <div class="portlet light portlet-fit portlet-form bordered">
-                            
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <i class=" icon-layers font-blue"></i>
-                                        <span class="caption-subject font-blue sbold uppercase">Pedidos Especiales</span>
-                                </div>
-                                <?php if( $productoId > 0 ){ ?>
-                                <div class="actions">
-                                    <a  href="<?php echo base_url() ?>admin/pedido-especial-producto/<?php echo $productoId?>" class="btn btn-default btn-sm">
-                                        <i class="fa icon-basket"></i> Agregar Pedido Especial </a>
-                                </div>
-                                <?php } ?>      
-                            </div>
-
-                            <div class="portlet-body">
-                                <div class="form-body">
-                              <?php if (!empty($listadoProductos)) { ?>
-                                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
-                                    <thead>
-                                        <tr>
-                                            <th> Nombre </th>
-                                            <th> Estatus </th>
-                                            <th> Categoria </th>
-                                            <th> Creada Por </th>
-                                            <th> Fecha Creación </th>
-                                            <th> Opciones </th>
-                                        </tr>
-                                    </thead>
-                                     <tbody>
-                                <?php  foreach ($listadoProductos as $key => $valProductos) { ?>
-                                   
-                                        <tr class="odd gradeX">
-                                            <td width="15%" > <?php echo $valProductos['nombre'] ?> </td>
-                                            <td> <?php echo ($valProductos['estatus'] == 1 ? "Activo":"Desactivo" )?> </td>
-                                            <td> <?php echo $valProductos['nombre_cat'] ?> </td>
-                                            <td> <?php echo $valProductos['creado_por'] ?> </td>
-                                            <td> <?php echo $valProductos['fecha_creacion'] ?> </td>
-                                            <td> 
-                                                <div class="btn-group">
-                                                    <button class="btn btn-xs normal dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actiones
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li>
-                                                            <a href="<?php echo base_url() ?>admin/detalle-producto/<?php echo $valProductos['id_producto'] ?>" >
-                                                                <i class="icon-docs"></i>Editar</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                               
-                                            </td>
-                                        </tr>
-                                    
-                                <?php } echo "</tbody></table>"; } ?>                          
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>   
-
                         <div class="col-md-12">
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
@@ -469,6 +405,7 @@
                             <!-- END VALIDATION STATES-->
                         </div> 
                         <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
+                        <input type="hidden" name="id_producto_especial" value="<?php echo $productoEspecialId ?>" />
                         </form>
                         <!-- END FORM-->
                     </div>       

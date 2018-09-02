@@ -8,6 +8,7 @@ class ProductosCtrl extends CI_Controller {
 	private $productoVideosTabla      = "producto_videos";
     //private $videosTabla       = "videos";
 	private $productosTienda          = "producto_tienda";
+	private $productosPedidosEspeciales          = "producto_producto_especial";
 	private $urlRedireccionProductos  = "admin/listado-productos";
 	private $urlRedirDetalleProductos = "admin/detalle-producto";
 	private $usuarioSesion;
@@ -60,6 +61,9 @@ class ProductosCtrl extends CI_Controller {
 
 
 		$data['detalleProducto'] = $this->mProductos->obtenerProductos($productoId,"id");
+		
+
+		$data['listadoProductos'] = $this->mProductos->obtenerProductosEspecial($productoId,"id");
 		$data['productoId']      = $productoId;
 		$data['tiendasProducto'] = $this->mProductos->obtenerTiendasPorProducto($productoId);
 		$data['fotosProducto']   = $this->entidad->getModelBase("producto_fotos",'id_foto,path,orden,producto_id','orden','ASC',array('producto_id'=>$productoId));
@@ -79,6 +83,38 @@ class ProductosCtrl extends CI_Controller {
 		$this->load->view('template');
 
 	}	
+
+	function verProductoEspecial($productoId = 0){
+
+		$data['ubicacion']  = array(base_url().DASHBOARD =>'Dashboard',base_url().$this->urlRedireccionProductos =>'Productos','#'=>'Pedido Especial Producto');
+			$data['titulo']     ='Pedido Especial Producto';
+			$data['contenido']  ="administrador/productos/pedido_especial_producto.php";
+			//JS EXTERNO
+			$data['js_externo'] ="administrador/productos/js/inicio.php";
+	
+			$data['productoEspecialId']= $productoId;
+			$productoId=0;
+			$data['detalleProducto'] = $this->mProductos->obtenerProductos($productoId,"id");
+			$data['productoId']      = 0;
+			
+			$data['tiendasProducto'] = $this->mProductos->obtenerTiendasPorProducto($productoId);
+			$data['fotosProducto']   = $this->entidad->getModelBase("producto_fotos",'id_foto,path,orden,producto_id','orden','ASC',array('producto_id'=>$productoId));
+			$data['videosProducto']  = $this->entidad->getModelBase("producto_videos",'id_video,path,producto_id,nombre','id_video','ASC',array('producto_id'=>$productoId));
+	
+			// CATALOGOS
+			$data['listadoColores']    = $this->entidad->getModelBase("ctg_colores",'id,nombre','nombre','ASC',null);
+			$data['listadoTapiz']      = $this->entidad->getModelBase("ctg_tapiz",'id,nombre','nombre','ASC',null);
+			$data['listadoMecanismo']  = $this->entidad->getModelBase("ctg_mecanismos",'id,nombre','nombre','ASC',null);
+			$data['listadoTiendas']    = $this->entidad->getModelBase("ctg_tienda",'id,nombre','nombre','ASC',null);
+			$data['listadoCategorias'] = $this->entidad->getModelBase("ctg_categorias",'id,nombre','nombre','ASC',null);
+			$data['listadoMasaje']     = $this->entidad->getModelBase("ctg_masaje",'id,nombre','nombre','ASC',null);
+	
+			// SE AGREGAN TODOS LOS DATOS A MOSTRAR EN $data
+			$this->load->vars($data);
+			// CARGA TEMPLATE DEFAULT
+			$this->load->view('template');
+	
+		}	
 
 
 	function salvarProducto(){
@@ -128,6 +164,68 @@ class ProductosCtrl extends CI_Controller {
 		redirect($this->urlRedireccionProductos);
 	}
 
+	function salvarProductoEspecial(){
+
+		$datos = $this->input->post();
+
+		$idProducto = $datos['id_producto'];
+		$idProductoEspecial = $datos['id_producto_especial'];
+		$tiendasProductos = $datos['tiendas'];
+		$datos['pedido_especial']   = true;	
+
+		unset($datos["id_producto"]);
+		if( !empty($tiendasProductos) ){ unset($datos["tiendas"]); } 
+		unset($datos["accion"]);
+
+
+		if ($idProducto == 0) {
+			// # CREAR
+
+			$datos['usuario_creacion'] = $this->usuarioSesion;
+			$datos['fecha_creacion']   = HOY;	
+				
+			
+			$respuesta  = $this->entidad->save($this->productosTabla,$datos);	
+			$idProducto = $respuesta;
+
+
+		}else{
+			// # MODIFICAR
+
+			$datos['usuario_modificacion'] = $this->usuarioSesion;
+			$datos['fecha_modificacion']   = HOY;
+
+			$respuesta = $this->entidad->update($this->productosTabla,"id_producto",$idProducto,$datos);
+		}
+
+		if ($respuesta > 0) {
+			$mensaje = "El sillón fue creado/actualizado con éxito.";
+			$tipoFlashData = "exitoso";
+		}else{
+			$mensaje = "El sillón no puedo ser creado/actualizado";
+			$tipoFlashData = "error";
+		}
+
+		// ASOCIAR TIENDAS
+		$this->asociarTiendas($idProducto,$tiendasProductos);
+
+		//$this->asociarProductoEspecial($idProductoEspecial,$idProducto);
+
+		$this->session->set_flashdata($tipoFlashData,$mensaje);
+
+		redirect($this->urlRedireccionProductos);
+	}
+
+	private function asociarProductoEspecial($productoId,$productoIdEspecial){
+
+			//$this->entidad->delete($this->productosPedidosEspeciales,"id_producto_especial",$productoId);
+
+			//foreach ($tiendas as $valTiendas) {
+				$this->entidad->save($this->productosPedidosEspeciales,array('id_producto'=>$productoId,'id_producto_especial'=>$productoIdEspecial));	
+			//}
+		
+		
+	}
 
 	private function asociarTiendas($productoId,$tiendas){
 
