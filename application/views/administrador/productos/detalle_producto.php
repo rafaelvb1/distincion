@@ -256,15 +256,10 @@
                                                             </h3>
                                                             <p></p>
                                                         </li>
-
-                                                   
-
-                                                        <iframe width="420" height="315" 
+                                                        <!-- <iframe width="420" height="315" 
                                                         src="<?php echo $valVideosProducto['path'] ?>" 
                                                         frameborder="0" allowfullscreen>
-                                                        </iframe>
-
-                                                        
+                                                        </iframe> -->
                                                         <?php } } ?>
                                                     </ul>
                                                 </div>  
@@ -276,49 +271,56 @@
                             <!-- END VALIDATION STATES-->
                         </div>
                         <!--Videos fin-->
-                        <div class="col-md-6" hidden>
+                        <div class="col-md-6">
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
                                 
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class=" glyphicon glyphicon-camera font-blue"></i>
+                                        <i class=" glyphicon glyphicon-film font-blue"></i>
                                             <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
-                                                Fotos Mecanismo <span id="peticion" ></span>  
+                                                Multimedia Mecanismo <span id="peticion" ></span>  
                                             </span> 
                                     </div>
+
+
                                     <?php if( $productoId > 0 ){ ?>
                                     <div class="actions">
-                                        <?php if ( empty($detalleProducto[0]['masaje'] ) ){?> 
-                                            <a href="#subirMultimediaMecanismo" data-toggle="modal" class="btn blue btn-sm green">
-                                                <i class="fa fa-plus"></i> Agregar Foto Mecanismo
-                                            </a>
-                                        <?php }?>
+                                    <?php if ( empty($videosProductoMasaje) ){ ?>
+                                        <a href="#addVideoMecanismo" data-toggle="modal" class="btn blue btn-sm green">
+                                            <i class="fa fa-plus"></i> Agregar Video Mecanismo
+                                        </a>
+                                        <?php } ?> 
                                     </div>
                                     <?php } ?>           
                                 </div>
 
                                 <div class="portlet-body">
-                                    <!-- BEGIN FORM-->   
+                                    <!-- BEGIN FORM-->        
                                         <div class="form-body">
                                             <div class="mt-element-list">    
                                                 <div class="mt-list-container list-news ext-2">
                                                     <ul>
                                                         <?php
-                                                        if ( !empty($detalleProducto[0]['mecanismo'] ) ){?>  
+                                                        if ( !empty($videosProductoMecanismo) ){
+                                                            foreach ($videosProductoMecanismo as $key => $valVideosProductoMecanismo) { ?>  
                                                         <li class="mt-list-item">
-                                                            <div class="list-thumb">
-                                                                 <img alt="" src="<?php echo base_url()."/img.muebles/".$detalleProducto[0]['mecanismo']  ?>">
-                                                            </div>
                                                             <h3 class="uppercase">
-                                                                <a href="javascript:;" onClick="eliminarFotoMecanismo(<?php echo $detalleProducto[0]['id_producto'] ?>,<?php echo $detalleProducto[0]['id_producto'] ?>);" title="Eliminar Foto mecanismo" class="btn btn-icon-only red">
+                                                            Video: <?php echo $valVideosProductoMecanismo['nombre'] ?> 
+                                                               <a href="<?php echo $valVideosProductoMecanismo['path'] ?> " target="_blank" title="Ver Video Mecanismo" class="btn btn-icon-only blue">
+                                                                    <i class="glyphicon glyphicon-film"></i>
+                                                                </a>
+                                                                <a href="javascript:;" onClick="eliminarVideoMecanismo(<?php echo $valVideosProductoMecanismo['id_video_mecanismo'] ?>,<?php echo $valVideosProductoMecanismo['producto_id'] ?>);" title="Eliminar Video Mecanismo" class="btn btn-icon-only red">
                                                                     <i class="fa fa-times"></i>
                                                                 </a>
-                                                                 
                                                             </h3>
                                                             <p></p>
                                                         </li>
-                                                        <?php  } ?>
+                                                        <!-- <iframe width="420" height="315" 
+                                                        src="<?php echo $valVideosProductoMecanismo['path'] ?>" 
+                                                        frameborder="0" allowfullscreen>
+                                                        </iframe> -->
+                                                        <?php } } ?>
                                                     </ul>
                                                 </div>  
                                             </div>
@@ -328,49 +330,56 @@
                             </div>
                             <!-- END VALIDATION STATES-->
                         </div>
-                        <div class="col-md-6" hidden>
+                        <div class="col-md-6">
                             <!-- BEGIN VALIDATION STATES-->
                             <div class="portlet light portlet-fit portlet-form bordered">
                                 
                                 <div class="portlet-title">
                                     <div class="caption">
-                                        <i class=" glyphicon glyphicon-camera font-blue"></i>
+                                        <i class=" glyphicon glyphicon-film font-blue"></i>
                                             <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
-                                                Fotos Masaje <span id="peticion" ></span>  
+                                                Multimedia Masaje <span id="peticion" ></span>  
                                             </span> 
                                     </div>
+
+
                                     <?php if( $productoId > 0 ){ ?>
                                     <div class="actions">
-                                        <?php if ( empty($detalleProducto[0]['masaje'] ) ){?> 
-                                            <a href="#subirFotoMasaje" data-toggle="modal" class="btn blue btn-sm green">
-                                                <i class="fa fa-plus"></i> Agregar Foto Masaje
-                                            </a>
-                                        <?php } ?>  
+                                       <?php if ( empty($videosProductoMasaje) ){ ?>
+                                        <a href="#addVideoMasaje" data-toggle="modal" class="btn blue btn-sm green">
+                                            <i class="fa fa-plus"></i> Agregar Video Masaje
+                                        </a>
+                                        <?php } ?>   
                                     </div>
                                     <?php } ?>           
                                 </div>
 
                                 <div class="portlet-body">
-                                    <!-- BEGIN FORM-->   
+                                    <!-- BEGIN FORM-->        
                                         <div class="form-body">
                                             <div class="mt-element-list">    
                                                 <div class="mt-list-container list-news ext-2">
                                                     <ul>
                                                         <?php
-                                                        if ( !empty($detalleProducto[0]['masaje'] ) ){?>  
+                                                        if ( !empty($videosProductoMasaje) ){
+                                                            foreach ($videosProductoMasaje as $key => $valVideosProductoMasaje) { ?>  
                                                         <li class="mt-list-item">
-                                                            <div class="list-thumb">
-                                                                 <img alt="" src="<?php echo base_url()."/img.muebles/".$detalleProducto[0]['masaje']  ?>">
-                                                            </div>
                                                             <h3 class="uppercase">
-                                                                <a href="javascript:;" onClick="eliminarFotoMasaje(<?php echo $detalleProducto[0]['id_producto'] ?>,<?php echo $detalleProducto[0]['id_producto'] ?>);" title="Eliminar Foto Masaje" class="btn btn-icon-only red">
+                                                            Video: <?php echo $valVideosProductoMasaje['nombre'] ?> 
+                                                               <a href="<?php echo $valVideosProductoMasaje['path'] ?> " target="_blank" title="Ver Video Masaje" class="btn btn-icon-only blue">
+                                                                    <i class="glyphicon glyphicon-film"></i>
+                                                                </a>
+                                                                <a href="javascript:;" onClick="eliminarVideoMasaje(<?php echo $valVideosProductoMasaje['id_video_masaje'] ?>,<?php echo $valVideosProductoMasaje['producto_id'] ?>);" title="Eliminar Video Masaje" class="btn btn-icon-only red">
                                                                     <i class="fa fa-times"></i>
                                                                 </a>
-                                                                 
                                                             </h3>
                                                             <p></p>
                                                         </li>
-                                                        <?php  } ?>
+                                                        <!-- <iframe width="420" height="315" 
+                                                        src="<?php echo $valVideosProductoMasaje['path'] ?>" 
+                                                        frameborder="0" allowfullscreen>
+                                                        </iframe> -->
+                                                        <?php } } ?>
                                                     </ul>
                                                 </div>  
                                             </div>
@@ -572,8 +581,8 @@
                             <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
                     </form>
 </div>
-<div class="modal fade" id="subirMultimediaMecanismo" tabindex="-1" role="subirMultimediaMecanismo" aria-hidden="true">
-                        <?php echo form_open_multipart('admin/subir-multimedia-mecanismo');?>
+<div class="modal fade" id="addVideoMecanismo" tabindex="-1" role="addVideoMecanismo" aria-hidden="true">
+<?php echo form_open_multipart('admin/add-video-mecanismo');?>
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -584,7 +593,7 @@
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <i class=" icon-layers font-blue"></i>
-                                                    <span class="caption-subject font-blue sbold uppercase">Subir Foto Mecanismo</span>
+                                                    <span class="caption-subject font-blue sbold uppercase">Agregar liga video mecanismo</span>
                                             </div>
                                         </div>
 
@@ -592,13 +601,20 @@
                                             <!-- BEGIN FORM-->                                   
                                                 <div class="form-body">
                                                     <div class="form-group form-md-line-input form-md-floating-label">
-                                                        <input type="file" name="userfile" size="20" />
-                                                        <label for="usuario">Foto Mecanismo</label>
+                                                        <input type="text" value="" class="form-control" name="file_name" id="fila_name"  />    
+                                                        <label for="usuario">Nombre video Mecanismo</label>    
                                                         <div class="form-control-focus"> </div>
                                                     </div>
+                                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                                        <input type="text" value="" class="form-control" name="ligaVideoMecanismo" id="ligaVideoMecanismo">
+                                                        <label for="nombre">Liga Video Mecanismo</label>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>  
+
+                                                  
                                                                                                           
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn green">Crear</button>
+                                                        <button type="submit" class="btn green">Agregar</button>
                                                     </div>
                                                 </div>
                                         </div>
@@ -608,11 +624,11 @@
                                 <!-- /.modal-content -->
                             </div>
                             <!-- /.modal-dialog -->
-                            <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
+                            <input type="" name="id_producto" value="<?php echo $productoId ?>" />
                     </form>
 </div> 
-<div class="modal fade" id="subirFotoMasaje" tabindex="-1" role="subirFotoMasaje" aria-hidden="true">
-                        <?php echo form_open_multipart('admin/subir-fotomasaje-producto');?>
+<div class="modal fade" id="addVideoMasaje" tabindex="-1" role="addVideoMasaje" aria-hidden="true">
+<?php echo form_open_multipart('admin/add-video-masaje');?>
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -623,7 +639,7 @@
                                         <div class="portlet-title">
                                             <div class="caption">
                                                 <i class=" icon-layers font-blue"></i>
-                                                    <span class="caption-subject font-blue sbold uppercase">Subir Foto Masaje</span>
+                                                    <span class="caption-subject font-blue sbold uppercase">Agregar liga video masaje</span>
                                             </div>
                                         </div>
 
@@ -631,13 +647,20 @@
                                             <!-- BEGIN FORM-->                                   
                                                 <div class="form-body">
                                                     <div class="form-group form-md-line-input form-md-floating-label">
-                                                        <input type="file" name="userfile" size="20" />
-                                                        <label for="usuario">Foto Masaje</label>
+                                                        <input type="text" value="" class="form-control" name="file_name" id="fila_name"  />    
+                                                        <label for="usuario">Nombre video Masaje</label>    
                                                         <div class="form-control-focus"> </div>
                                                     </div>
+                                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                                        <input type="text" value="" class="form-control" name="ligaVideoMasaje" id="ligaVideoMasaje">
+                                                        <label for="nombre">Liga Video Masaje</label>
+                                                        <div class="form-control-focus"> </div>
+                                                    </div>  
+
+                                                  
                                                                                                           
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn green">Crear</button>
+                                                        <button type="submit" class="btn green">Agregar</button>
                                                     </div>
                                                 </div>
                                         </div>
@@ -647,6 +670,6 @@
                                 <!-- /.modal-content -->
                             </div>
                             <!-- /.modal-dialog -->
-                            <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
+                            <input type="" name="id_producto" value="<?php echo $productoId ?>" />
                     </form>
 </div> 

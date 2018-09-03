@@ -6,6 +6,8 @@ class ProductosCtrl extends CI_Controller {
 	private $productosTabla           = "productos";
 	private $productoFotosTabla       = "producto_fotos";
 	private $productoVideosTabla      = "producto_videos";
+	private $productoVideosMecanismoTabla= "producto_video_mecanismo";
+	private $productoVideosMasajeTabla= "producto_video_masaje";
     //private $videosTabla       = "videos";
 	private $productosTienda          = "producto_tienda";
 	private $productosPedidosEspeciales          = "producto_producto_especial";
@@ -68,7 +70,8 @@ class ProductosCtrl extends CI_Controller {
 		$data['tiendasProducto'] = $this->mProductos->obtenerTiendasPorProducto($productoId);
 		$data['fotosProducto']   = $this->entidad->getModelBase("producto_fotos",'id_foto,path,orden,producto_id','orden','ASC',array('producto_id'=>$productoId));
 		$data['videosProducto']  = $this->entidad->getModelBase("producto_videos",'id_video,path,producto_id,nombre','id_video','ASC',array('producto_id'=>$productoId));
-
+		$data['videosProductoMecanismo']  = $this->entidad->getModelBase("producto_video_mecanismo",'id_video_mecanismo,path,producto_id,nombre','id_video_mecanismo','ASC',array('producto_id'=>$productoId));
+		$data['videosProductoMasaje']  = $this->entidad->getModelBase("producto_video_masaje",'id_video_masaje,path,producto_id,nombre','id_video_masaje','ASC',array('producto_id'=>$productoId));
 		// CATALOGOS
 		$data['listadoColores']    = $this->entidad->getModelBase("ctg_colores",'id,nombre','nombre','ASC',null);
 		$data['listadoTapiz']      = $this->entidad->getModelBase("ctg_tapiz",'id,nombre','nombre','ASC',null);
@@ -329,35 +332,51 @@ class ProductosCtrl extends CI_Controller {
 		$this->session->set_flashdata("exitoso","video Actualizada");
 
 	}
-	function subirMultimediaMecanismo(){
+	function eliminarVideoMecanismo($videoId){
 
-		$datos = $this->input->post();
+		$this->entidad->delete($this->productoVideosMecanismoTabla,"id_video_mecanismo",$videoId);
 
-		$idProducto = $datos['id_producto'];
+		$this->session->set_flashdata("exitoso","video Actualizada");
 
-		unset($datos["id_producto"]);
-		unset($datos["accion"]);
-
-			// # MODIFICAR
-
-			$datos['usuario_modificacion'] = $this->usuarioSesion;
-			$datos['fecha_modificacion']   = HOY;
-
-			$respuesta = $this->entidad->update($this->productosTabla,"id_producto",$idProducto,$datos);
-		
-
-		if ($respuesta > 0) {
-			$mensaje = "El archivo multimedia fue agregado con éxito.";
-			$tipoFlashData = "exitoso";
-		}else{
-			$mensaje = "El archivo multimedia no puedo ser agregado";
-			$tipoFlashData = "error";
-		}
-
-		$this->session->set_flashdata($tipoFlashData,$mensaje);
-
-		redirect($this->urlRedireccionProductos);
 	}
+	function eliminarVideoMasaje($videoId){
+
+		$this->entidad->delete($this->productoVideosMasajeTabla,"id_video_masaje",$videoId);
+
+		$this->session->set_flashdata("exitoso","video Actualizada");
+
+	}
+	function addVideoMecanismo(){
+
+		$dataVideosMecanismo = $this->input->post();
+
+            $this->entidad->save($this->productoVideosMecanismoTabla,array('producto_id'=>$dataVideosMecanismo['id_producto'],'path'=>$dataVideosMecanismo['ligaVideoMecanismo'],'nombre'=>$dataVideosMecanismo['file_name']));	
+
+            $mensaje = "La liga se agrego con éxito.";
+			$tipoFlashData = "exitoso";
+
+    
+        $this->session->set_flashdata($tipoFlashData,$mensaje);
+
+		redirect($this->urlRedirDetalleProductos."/".$dataVideosMecanismo['id_producto']);
+
+	}
+	function addVideoMasaje(){
+
+		$dataVideosMasaje = $this->input->post();
+
+            $this->entidad->save($this->productoVideosMasajeTabla,array('producto_id'=>$dataVideosMasaje['id_producto'],'path'=>$dataVideosMasaje['ligaVideoMasaje'],'nombre'=>$dataVideosMasaje['file_name']));	
+
+            $mensaje = "La liga se agrego con éxito.";
+			$tipoFlashData = "exitoso";
+
+    
+        $this->session->set_flashdata($tipoFlashData,$mensaje);
+
+		redirect($this->urlRedirDetalleProductos."/".$dataVideosMasaje['id_producto']);
+
+	}
+	
 
 
 

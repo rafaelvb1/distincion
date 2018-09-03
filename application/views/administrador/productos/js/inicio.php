@@ -46,6 +46,50 @@ $.ajax({
 window.location.href = '<?php echo base_url(); ?>'+urlDetalleProductos+productoId;
 
 }
+function eliminarVideoMecanismo(videoId,productoId){
+
+$.ajax({
+    url : '<?php echo base_url(); ?>admin/video-mecanismo-eliminar/'+videoId,
+    type : 'GET',
+    beforeSend: function(xhr, status) {
+        $("#peticion").html('<i class="fa fa-spin fa-spinner"></i> Procesando Petición!');
+    },
+    success : function(text) {
+        $("#peticion").html("");
+    },
+    error : function(xhr, status) {
+        $("#peticion").html("");
+    },
+    complete : function(xhr, status) {
+        $("#peticion").html("");
+    }
+});
+
+window.location.href = '<?php echo base_url(); ?>'+urlDetalleProductos+productoId;
+
+}
+function eliminarVideoMasaje(videoId,productoId){
+
+$.ajax({
+    url : '<?php echo base_url(); ?>admin/video-masaje-eliminar/'+videoId,
+    type : 'GET',
+    beforeSend: function(xhr, status) {
+        $("#peticion").html('<i class="fa fa-spin fa-spinner"></i> Procesando Petición!');
+    },
+    success : function(text) {
+        $("#peticion").html("");
+    },
+    error : function(xhr, status) {
+        $("#peticion").html("");
+    },
+    complete : function(xhr, status) {
+        $("#peticion").html("");
+    }
+});
+
+window.location.href = '<?php echo base_url(); ?>'+urlDetalleProductos+productoId;
+
+}
 
 function marcarComoPrincipal(productoId,fotoId){
 
