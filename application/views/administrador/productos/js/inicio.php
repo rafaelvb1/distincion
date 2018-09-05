@@ -24,6 +24,50 @@ function eliminarFoto(fotoId,productoId){
 	window.location.href = '<?php echo base_url(); ?>'+urlDetalleProductos+productoId;
 
 }
+function eliminarFotoMecanismo(fotoId,productoId){
+
+$.ajax({
+    url : '<?php echo base_url(); ?>admin/foto-mecanismo-eliminar/'+fotoId,
+    type : 'GET',
+    beforeSend: function(xhr, status) {
+        $("#peticion").html('<i class="fa fa-spin fa-spinner"></i> Procesando Petición!');
+    },
+    success : function(text) {
+        $("#peticion").html("");
+    },
+    error : function(xhr, status) {
+        $("#peticion").html("");
+    },
+    complete : function(xhr, status) {
+        $("#peticion").html("");
+    }
+});
+
+window.location.href = '<?php echo base_url(); ?>'+urlDetalleProductos+productoId;
+
+}
+function eliminarFotoMasaje(fotoId,productoId){
+
+$.ajax({
+    url : '<?php echo base_url(); ?>admin/foto-masaje-eliminar/'+fotoId,
+    type : 'GET',
+    beforeSend: function(xhr, status) {
+        $("#peticion").html('<i class="fa fa-spin fa-spinner"></i> Procesando Petición!');
+    },
+    success : function(text) {
+        $("#peticion").html("");
+    },
+    error : function(xhr, status) {
+        $("#peticion").html("");
+    },
+    complete : function(xhr, status) {
+        $("#peticion").html("");
+    }
+});
+
+window.location.href = '<?php echo base_url(); ?>'+urlDetalleProductos+productoId;
+
+}
 function eliminarVideo(fotoId,productoId){
 
 $.ajax({

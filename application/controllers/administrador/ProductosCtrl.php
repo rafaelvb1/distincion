@@ -5,6 +5,8 @@ class ProductosCtrl extends CI_Controller {
 
 	private $productosTabla           = "productos";
 	private $productoFotosTabla       = "producto_fotos";
+	private $productoFotosMecanismoTabla       = "producto_fotos_mecanismo";
+	private $productoFotosMasajeTabla       = "producto_fotos_masaje";
 	private $productoVideosTabla      = "producto_videos";
 	private $productoVideosMecanismoTabla= "producto_video_mecanismo";
 	private $productoVideosMasajeTabla= "producto_video_masaje";
@@ -69,6 +71,8 @@ class ProductosCtrl extends CI_Controller {
 		$data['productoId']      = $productoId;
 		$data['tiendasProducto'] = $this->mProductos->obtenerTiendasPorProducto($productoId);
 		$data['fotosProducto']   = $this->entidad->getModelBase("producto_fotos",'id_foto,path,orden,producto_id','orden','ASC',array('producto_id'=>$productoId));
+		$data['fotosProductoMecanismo']   = $this->entidad->getModelBase("producto_fotos_mecanismo",'id_foto,path,producto_id','producto_id','ASC',array('producto_id'=>$productoId));
+		$data['fotosProductoMasaje']   = $this->entidad->getModelBase("producto_fotos_masaje",'id_foto,path,producto_id','producto_id','ASC',array('producto_id'=>$productoId));
 		$data['videosProducto']  = $this->entidad->getModelBase("producto_videos",'id_video,path,producto_id,nombre','id_video','ASC',array('producto_id'=>$productoId));
 		$data['videosProductoMecanismo']  = $this->entidad->getModelBase("producto_video_mecanismo",'id_video_mecanismo,path,producto_id,nombre','id_video_mecanismo','ASC',array('producto_id'=>$productoId));
 		$data['videosProductoMasaje']  = $this->entidad->getModelBase("producto_video_masaje",'id_video_masaje,path,producto_id,nombre','id_video_masaje','ASC',array('producto_id'=>$productoId));
@@ -274,6 +278,21 @@ class ProductosCtrl extends CI_Controller {
 		$this->session->set_flashdata("exitoso","Foto Actualizada");
 
 	}
+	function eliminarFotoMecanismo($fotoId){
+
+		$this->entidad->delete($this->productoFotosMecanismoTabla,"id_foto",$fotoId);
+
+		$this->session->set_flashdata("exitoso","Foto Actualizada");
+
+	}
+	function eliminarFotoMasaje($fotoId){
+
+		$this->entidad->delete($this->productoFotosMasajeTabla,"id_foto",$fotoId);
+
+		$this->session->set_flashdata("exitoso","Foto Actualizada");
+
+	}
+	
 
 	function subirFoto(){
 
@@ -299,6 +318,74 @@ class ProductosCtrl extends CI_Controller {
             $principal = ( isset($data['principal']) ? '1':'2' );
 
             $this->entidad->save($this->productoFotosTabla,array('producto_id'=>$data['id_producto'],'path'=>$dataFotos['upload_data']['file_name'],'orden'=>$principal ));	
+
+            $mensaje = "La foto se agrego con éxito.";
+			$tipoFlashData = "exitoso";
+
+        }		
+
+        $this->session->set_flashdata($tipoFlashData,$mensaje);
+
+		redirect($this->urlRedirDetalleProductos."/".$data['id_producto']);
+
+	}
+	function addFotoMecanismo(){
+
+		$data = $this->input->post();
+
+    	$config['upload_path']          = URL_IMG_PRODUCTO;
+        $config['allowed_types']        = 'jpg|png';
+        $config['max_size']             = 2000;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('userfile')){
+			$error = array('error' => $this->upload->display_errors());
+
+                        print_r($error);
+						$mensaje=$config['upload_path'] ;
+           // $mensaje = "No se pudo subir la foto, valide que el tamaño del archivo no sea mayor a 3 mb y sea del tipo: jpg o png ".$this->upload->display_errors();
+			$tipoFlashData = "error";
+
+        }else{
+            $dataFotos = array('upload_data' => $this->upload->data());
+
+            
+            $this->entidad->save($this->productoFotosMecanismoTabla,array('producto_id'=>$data['id_producto'],'path'=>$dataFotos['upload_data']['file_name'] ));	
+
+            $mensaje = "La foto se agrego con éxito.";
+			$tipoFlashData = "exitoso";
+
+        }		
+
+        $this->session->set_flashdata($tipoFlashData,$mensaje);
+
+		redirect($this->urlRedirDetalleProductos."/".$data['id_producto']);
+
+	}
+	function addFotoMasaje(){
+
+		$data = $this->input->post();
+
+    	$config['upload_path']          = URL_IMG_PRODUCTO;
+        $config['allowed_types']        = 'jpg|png';
+        $config['max_size']             = 2000;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('userfile')){
+			$error = array('error' => $this->upload->display_errors());
+
+                        print_r($error);
+
+            $mensaje = "No se pudo subir la foto, valide que el tamaño del archivo no sea mayor a 2 mb y sea del tipo: jpg o png ".$this->upload->display_errors();
+			$tipoFlashData = "error";
+
+        }else{
+            $dataFotos = array('upload_data' => $this->upload->data());
+
+            
+            $this->entidad->save($this->productoFotosMasajeTabla,array('producto_id'=>$data['id_producto'],'path'=>$dataFotos['upload_data']['file_name'] ));	
 
             $mensaje = "La foto se agrego con éxito.";
 			$tipoFlashData = "exitoso";
