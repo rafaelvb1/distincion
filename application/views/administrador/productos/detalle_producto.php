@@ -116,7 +116,7 @@
                         
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class=" glyphicon glyphicon-film font-blue"></i>
+                                <i class=" glyphicon glyphicon-tasks font-blue"></i>
                                     <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
                                         Mecanismo <span id="peticion" ></span>  
                                     </span> 
@@ -191,7 +191,7 @@
                         
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class=" glyphicon glyphicon-film font-blue"></i>
+                                <i class=" glyphicon glyphicon-tasks font-blue"></i>
                                     <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
                                         Masaje <span id="peticion" ></span>  
                                     </span> 
@@ -268,7 +268,7 @@
                         
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class=" icon-layers font-blue"></i>
+                                <i class=" glyphicon glyphicon-ok font-blue"></i>
                                     <span class="caption-subject font-blue sbold uppercase">Tiendas Disponibles </span> 
                             </div>
                         </div>
@@ -301,7 +301,7 @@
                         
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class=" icon-layers font-blue"></i>
+                                <i class=" glyphicon glyphicon-picture font-blue"></i>
                                     <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
                                         Fotos  <span id="peticion" ></span>  
                                     </span> 
@@ -327,7 +327,7 @@
                                                 <li class="mt-list-item">
                                                     <div class="list-thumb">
                                                             <img alt="" src="<?php echo base_url()."/img.muebles/".$valFotosProducto['path']  ?>">
-                                                    </div><?php echo base_url()."/img.muebles/".$valFotosProducto['path']  ?>
+                                                    </div>
                                                     <h3 class="uppercase">
                                                         Posición <?php echo $valFotosProducto['orden'] ?> <?php if( $valFotosProducto['orden'] == 1 ){ ?><i class="fa fa-asterisk"></i> <?php } ?> 
 
@@ -355,7 +355,7 @@
                         
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class=" glyphicon glyphicon-film font-blue"></i>
+                                <i class=" glyphicon glyphicon-facetime-video font-blue"></i>
                                     <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
                                         Videos  <span id="peticion" ></span>  
                                     </span> 
@@ -412,7 +412,7 @@
                         
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class=" icon-layers font-blue"></i>
+                                <i class=" glyphicon glyphicon-tags font-blue"></i>
                                     <span class="caption-subject font-blue sbold uppercase">Pedidos Especiales</span>
                             </div>
                             <?php if( $productoId > 0 ){ ?>
