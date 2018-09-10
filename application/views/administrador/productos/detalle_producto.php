@@ -262,6 +262,7 @@
                     </div>
                 </div>
             <!--column rigth fin-->    
+            
             <!--column left inicio-->
                 <div class="col-md-6">
                     <div class="portlet light portlet-fit portlet-form bordered">
@@ -351,26 +352,8 @@
                         </div>
 
                     </div>
-                    <div class="portlet light portlet-fit portlet-form bordered">
-                        
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class=" glyphicon glyphicon-facetime-video font-blue"></i>
-                                    <span id="procesandoPetición" class="caption-subject font-blue sbold uppercase">
-                                        Videos  <span id="peticion" ></span>  
-                                    </span> 
-                            </div>
-
-
-                            <?php if( $productoId > 0 ){ ?>
-                            <div class="actions">
-                                <a href="#addVideo" data-toggle="modal" class="btn blue btn-sm green">
-                                    <i class="fa fa-plus"></i> Agregar Video 
-                                </a>
-                            </div>
-                            <?php } ?>           
-                        </div>
-                        <?php if( empty($detalleProducto[0]['id_producto_especial'])  ){ ?>
+                    </div>
+                    <?php if( empty($detalleProducto[0]['id_producto_especial'])  ){ ?>
                         <div class="col-md-12">
                         
                         <div class="portlet light portlet-fit portlet-form bordered">
@@ -388,132 +371,80 @@
                                 <?php } ?>      
                             </div>
 
-                        <div class="portlet-body">
-                            <!-- BEGIN FORM-->        
+                            <div class="portlet-body">
                                 <div class="form-body">
-                                    <div class="mt-element-list">    
-                                        <div class="mt-list-container list-news ext-2">
-                                            <ul>
-                                                <?php
-                                                if ( !empty($videosProducto) ){
-                                                    foreach ($videosProducto as $key => $valVideosProducto) { ?>  
-                                                <li class="mt-list-item">
-                                                    <h3 class="uppercase">
-                                                    Video: <?php echo $valVideosProducto['nombre'] ?> 
-                                                        <a href="<?php echo $valVideosProducto['path'] ?> " target="_blank" title="Ver Video" class="btn btn-icon-only blue">
-                                                            <i class="glyphicon glyphicon-film"></i>
-                                                        </a>
-                                                        <a href="javascript:;" onClick="eliminarVideo(<?php echo $valVideosProducto['id_video'] ?>,<?php echo $valVideosProducto['producto_id'] ?>);" title="Eliminar Video" class="btn btn-icon-only red">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                    </h3>
-                                                    <p></p>
-                                                </li>
-                                                <!-- <iframe width="420" height="315" 
-                                                src="<?php echo $valVideosProducto['path'] ?>" 
-                                                frameborder="0" allowfullscreen>
-                                                </iframe> -->
-                                                <?php } } ?>
-                                            </ul>
-                                        </div>  
-                                    </div>
+                              <?php if (!empty($listadoProductos)) { ?>
+                                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                                    <thead>
+                                        <tr>
+                                            <th> Nombre </th>
+                                            <th> Estatus </th>
+                                            <th> Categoria </th>
+                                            <th> Creada Por </th>
+                                            <th> Fecha Creación </th>
+                                            <th> Opciones </th>
+                                        </tr>
+                                    </thead>
+                                     <tbody>
+                                <?php  foreach ($listadoProductos as $key => $valProductos) { ?>
+                                   
+                                        <tr class="odd gradeX">
+                                            <td width="15%" > <?php echo $valProductos['nombre'] ?> </td>
+                                            <td> <?php echo ($valProductos['estatus'] == 1 ? "Activo":"Desactivo" )?> </td>
+                                            <td> <?php echo $valProductos['nombre_cat'] ?> </td>
+                                            <td> <?php echo $valProductos['creado_por'] ?> </td>
+                                            <td> <?php echo $valProductos['fecha_creacion'] ?> </td>
+                                            <td> 
+                                                <div class="btn-group">
+                                                    <button class="btn btn-xs normal dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actiones
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="<?php echo base_url() ?>admin/detalle-producto/<?php echo $valProductos['id_producto'] ?>" >
+                                                                <i class="icon-docs"></i>Editar</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                               
+                                            </td>
+                                        </tr>
+                                    
+                                <?php } echo "</tbody></table>"; } ?>                          
                                 </div>
+                            </div>
                         </div>
-
                     </div>
-                </div>    
-            <!--column left fin-->
-            <?php if( $detalleProducto[0]['id_producto_especial'] ==null ){ ?>
-                <div class="col-md-12">
-                    <div class="portlet light portlet-fit portlet-form bordered">
-                        
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class=" glyphicon glyphicon-tags font-blue"></i>
-                                    <span class="caption-subject font-blue sbold uppercase">Pedidos Especiales</span>
-                            </div>
-                            <?php if( $productoId > 0 ){ ?>
-                            <div class="actions">
-                                <a  href="<?php echo base_url() ?>admin/pedido-especial-producto/<?php echo $productoId?>" class="btn btn-default btn-sm">
-                                    <i class="fa icon-basket"></i> Agregar Pedido Especial </a>
-                            </div>
-                            <?php } ?>      
-                        </div>
+                    <?php } ?>   
 
-                        <div class="portlet-body">
-                            <div class="form-body">
-                        <?php if (!empty($listadoProductos)) { ?>
-                            <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
-                                <thead>
-                                    <tr>
-                                        <th> Nombre </th>
-                                        <th> Estatus </th>
-                                        <th> Categoria </th>
-                                        <th> Creada Por </th>
-                                        <th> Fecha Creación </th>
-                                        <th> Opciones </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                            <?php  foreach ($listadoProductos as $key => $valProductos) { ?>
+                        <div class="col-md-12">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
                             
-                                    <tr class="odd gradeX">
-                                        <td width="15%" > <?php echo $valProductos['nombre'] ?> </td>
-                                        <td> <?php echo ($valProductos['estatus'] == 1 ? "Activo":"Desactivo" )?> </td>
-                                        <td> <?php echo $valProductos['nombre_cat'] ?> </td>
-                                        <td> <?php echo $valProductos['creado_por'] ?> </td>
-                                        <td> <?php echo $valProductos['fecha_creacion'] ?> </td>
-                                        <td> 
-                                            <div class="btn-group">
-                                                <button class="btn btn-xs normal dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actiones
-                                                    <i class="fa fa-angle-down"></i>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a href="<?php echo base_url() ?>admin/detalle-producto/<?php echo $valProductos['id_producto'] ?>" >
-                                                            <i class="icon-docs"></i>Editar</a>
-                                                    </li>
-                                                </ul>
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->                                   
+                                        <div class="form-body">
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-offset-">
+                                                    <?php if ($productoId == 0) { ?>
+                                                        <input type="submit" name="accion" value="Crear" class="btn btn-lg blue m-icon-big" />                                                      
+                                                    <?php }else{ ?>
+                                                        <input type="submit" name="accion" value="Editar" class="btn btn-lg blue m-icon-big" />
+                                                    <?php } ?>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        
-                                        </td>
-                                    </tr>
-                                
-                            <?php } echo "</tbody></table>"; } ?>                          
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>   
-
-            <div class="col-md-12">
-                <!-- BEGIN VALIDATION STATES-->
-                <div class="portlet light portlet-fit portlet-form bordered">
-                
-                    <div class="portlet-body">
-                        <!-- BEGIN FORM-->                                   
-                            <div class="form-body">
-                                <div class="form-actions">
-                                    <div class="row">
-                                        <div class="col-md-offset-">
-                                        <?php if ($productoId == 0) { ?>
-                                            <input type="submit" name="accion" value="Crear" class="btn btn-lg blue m-icon-big" />                                                      
-                                        <?php }else{ ?>
-                                            <input type="submit" name="accion" value="Editar" class="btn btn-lg blue m-icon-big" />
-                                        <?php } ?>
                                         </div>
-                                    </div>
                                 </div>
-                            </div>
-                    </div>
 
-                </div>
-                <!-- END VALIDATION STATES-->
-            </div> 
-            <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
-        </form>
-        <!-- END FORM-->
-    </div>       
+                            </div>
+                            <!-- END VALIDATION STATES-->
+                        </div> 
+                        <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
+                        </form>
+                        <!-- END FORM-->
+                    </div>       
 
 
 <!--Modals inicio-->
