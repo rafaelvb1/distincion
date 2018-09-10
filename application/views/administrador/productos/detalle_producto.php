@@ -380,7 +380,7 @@
                             </div>
                             <!-- END VALIDATION STATES-->
                         </div>
-                        <?php if( $detalleProducto[0]['id_producto_especial'] ==null ){ ?>
+                        <?php if( empty($detalleProducto[0]['id_producto_especial'])  ){ ?>
                         <div class="col-md-12">
                         
                         <div class="portlet light portlet-fit portlet-form bordered">
