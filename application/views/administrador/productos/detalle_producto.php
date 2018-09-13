@@ -171,7 +171,7 @@
                                                 <li class="mt-list-item">
                                                     <div class="list-thumb">
                                                             <img alt="" src="<?php echo base_url()."/img.muebles/".$valFotosProductoMecanismo['path']  ?>">
-                                                    </div><?php echo base_url()."/img.muebles/".$valFotosProductoMecanismo['path']  ?>
+                                                    </div>
                                                     <h3 class="uppercase">
                                                         <a href="javascript:;" onClick="eliminarFotoMecanismo(<?php echo $valFotosProductoMecanismo['id_foto'] ?>,<?php echo $valFotosProductoMecanismo['producto_id'] ?>);" title="Eliminar Foto Mecanismo" class="btn btn-icon-only red">
                                                             <i class="fa fa-times"></i>
