@@ -109,9 +109,17 @@
                                         <label for="nombre">SKU</label>
                                         <div class="form-control-focus"> </div>
                                     </div>  
+
+                                     <div class="form-group form-md-line-input form-md-floating-label">
+                                        <input type="number" value="<?php echo isset( $detalleProducto[0]['orden']) ? $detalleProducto[0]['orden'] :'' ?>" class="form-control" name="orden" id="orden">
+                                        <label for="nombre">Orden</label>
+                                        <div class="form-control-focus"> </div>
+                                    </div>   
                                 </div>
                         </div>
                     </div>
+
+               
                     <div class="portlet light portlet-fit portlet-form bordered">
                         
                         <div class="portlet-title">
@@ -353,6 +361,38 @@
 
                     </div>
                     </div>
+
+                                  <div class="col-md-12">
+                            <!-- BEGIN VALIDATION STATES-->
+                            <div class="portlet light portlet-fit portlet-form bordered">
+                            
+                                <div class="portlet-body">
+                                    <!-- BEGIN FORM-->                                   
+                                        <div class="form-body">
+                                            <div class="form-actions">
+                                                <div class="row">
+                                                    <div class="col-md-offset-">
+                                                    <?php if ($productoId == 0) { ?>
+                                                        <input type="submit" name="accion" value="Crear" class="btn btn-lg blue m-icon-big" />                                                      
+                                                    <?php }else{ ?>
+                                                        <input type="submit" name="accion" value="Editar" class="btn btn-lg blue m-icon-big" />
+                                                    <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+
+                            </div>
+                            <!-- END VALIDATION STATES-->
+                        </div> 
+                        <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
+                        </form>
+                        <!-- END FORM-->
+                        
+
+
+
                     <?php if( empty($detalleProducto[0]['id_producto_especial'])  ){ ?>
                         <div class="col-md-12">
                         
@@ -417,33 +457,7 @@
                     </div>
                     <?php } ?>   
 
-                        <div class="col-md-12">
-                            <!-- BEGIN VALIDATION STATES-->
-                            <div class="portlet light portlet-fit portlet-form bordered">
-                            
-                                <div class="portlet-body">
-                                    <!-- BEGIN FORM-->                                   
-                                        <div class="form-body">
-                                            <div class="form-actions">
-                                                <div class="row">
-                                                    <div class="col-md-offset-">
-                                                    <?php if ($productoId == 0) { ?>
-                                                        <input type="submit" name="accion" value="Crear" class="btn btn-lg blue m-icon-big" />                                                      
-                                                    <?php }else{ ?>
-                                                        <input type="submit" name="accion" value="Editar" class="btn btn-lg blue m-icon-big" />
-                                                    <?php } ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-
-                            </div>
-                            <!-- END VALIDATION STATES-->
-                        </div> 
-                        <input type="hidden" name="id_producto" value="<?php echo $productoId ?>" />
-                        </form>
-                        <!-- END FORM-->
+               
                     </div>       
 
 

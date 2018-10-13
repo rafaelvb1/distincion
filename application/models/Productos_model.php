@@ -35,7 +35,8 @@ class Productos_model extends CI_Model {
                 pro.sku,
                 pro.mecanismo,
                 pro.masaje,
-                pro.id_producto_especial
+                pro.id_producto_especial,
+                pro.orden
                 FROM 
                 productos pro
                 inner join ctg_categorias cat on cat.id = pro.categoria_id
@@ -90,7 +91,8 @@ class Productos_model extends CI_Model {
                 pro.fecha_creacion,
                 pro.sku,
                 pro.mecanismo,
-                pro.masaje
+                pro.masaje,
+                pro.orden
                 FROM 
                 productos pro
                 inner join ctg_categorias cat on cat.id = pro.categoria_id
