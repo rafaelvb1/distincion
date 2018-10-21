@@ -383,6 +383,26 @@ class Vendedores_model extends CI_Model {
         }
         
     }
+
+    function getresultProductos(){
+        
+        
+            $table = 'productos';
+            $where = ' WHERE estatus = 1 order by orden';
+            
+            $sql = "SELECT * FROM $table  $where ";
+            
+             $q = $this->db->query($sql);
+    
+            if ($q->num_rows() > 0) {
+    
+                $resultdata = $q->result_array();
+            }
+
+            $q-> free_result();
+    
+            return $resultdata;
+    }
     
     
      function updatelogindata($table = NULL, $searchData = array(), $updateData = array()){

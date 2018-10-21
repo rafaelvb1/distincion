@@ -415,7 +415,7 @@ class Vendedor extends REST_Controller {
       
        $whereData = array('estatus' => 1);
       
-       $product = $this->mVendedores->getresult('productos');
+       $product = $this->mVendedores->getresultProductos();
        $tienda = $this->mVendedores->getresult('producto_tienda');
        $images = $this->mVendedores->getresult('producto_fotos');
         
