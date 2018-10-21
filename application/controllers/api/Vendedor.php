@@ -200,16 +200,17 @@ class Vendedor extends REST_Controller {
 	
     /**
     * Registrar visitas de productos
-    * Post save furniture visited products $usuarioId=userId, $muebleId=furnitureId, $fechaVisita=dateVisitedFurniture
+    * Post save furniture visited products $usuarioId=userId, $muebleId=furnitureId, $fechaVisita=dateVisitedFurniture, $tipoVisita= typeVisit
     */
     public function guardarVisita_post(){
 			$data = json_decode(file_get_contents("php://input"));
 			
 			$usuarioId = $data->user_id;
 			$muebleId = $data->furniture_id;
-			$fechaVisita = date("Y-m-d");
+            $fechaVisita = date("Y-m-d");
+            $tipoVisita = $data->type_visit;
 			
-			$resp  = $this->entidad->save($this->visitasMueble,array('usuario'=>$usuarioId,'mueble'=>$muebleId,'fecha_visita'=>$fechaVisita));
+			$resp  = $this->entidad->save($this->visitasMueble,array('usuario'=>$usuarioId,'mueble'=>$muebleId,'fecha_visita'=>$fechaVisita,'tipo_visita'=>$tipoVisita));
 			
 			if($resp > 0){
 			    $response = array("status" => "true", "message" => "Visted user added");

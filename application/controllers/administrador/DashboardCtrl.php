@@ -28,6 +28,9 @@ class DashboardCtrl extends CI_Controller {
 		$data['js_externo'] ="administrador/dashboard/js/inicio.php";
 		
 		$data['listadoReporte'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDias(8);
+		$data['listadoMasaje'] = $this->mReportes->obtenerMasajeMasVisitadosPorNumeroDias(8);
+		$data['listadoMecanismo'] = $this->mReportes->obtenerMecamismoMasVisitadosPorNumeroDias(8);
+		$data['listadoLoginVendedor'] = $this->mReportes->obtenerLoginVendedorPorNumeroDias(8);
 
 		// SE AGREGAN TODOS LOS DATOS A MOSTRAR EN $data
 		$this->load->vars($data);
