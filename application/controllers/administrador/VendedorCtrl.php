@@ -217,6 +217,9 @@ class VendedorCtrl extends CI_Controller {
 
 		 // OBTENER LISTADO DE TIENDAS
 		 $data['visitasVendedor'] = $this->mReportes->obtenerVisitasPorUsuarioNumeroDias($usuario);
+		 $data['visitasVendedorMasaje'] = $this->mReportes->obtenerVisitasPorUsuarioNumeroDiasMasaje($usuario);
+		 $data['visitasVendedorMecanismo'] = $this->mReportes->obtenerVisitasPorUsuarioNumeroDiasMecanismo($usuario);
+		 $data['visitasVendedorLogin'] = $this->mReportes->obtenerVisitasPorUsuarioNumeroDiasLogin($usuario);
 
 		 // SE AGREGAN TODOS LOS DATOS A MOSTRAR EN $data
 		 $this->load->vars($data);

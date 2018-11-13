@@ -17,7 +17,89 @@ class Reportes_model extends CI_Model {
                 inner join productos on productos.id_producto = visitas.mueble
                 where  
                     fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() and usuario = ?
+                    and tipo_visita = 'detalle'
                 GROUP BY fecha_visita,mueble order by fecha_visita asc ";
+
+        $q=$this->db->query($sql,array($dias,$usuario));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+        
+        echo $this->db->last_query();
+
+        //$this->db->last_query();
+        
+        $q-> free_result();
+
+        return $resultado;
+
+    }
+    function obtenerVisitasPorUsuarioNumeroDiasMasaje($usuario = 0, $dias = 8){
+
+        $resultado = array();
+
+        $sql = "SELECT COUNT(mueble)cantidad,mueble,usuario,fecha_visita,ctg_masaje.nombre,ctg_masaje.id
+                from visitas
+                inner join ctg_masaje on ctg_masaje.id = visitas.mueble
+                where  
+                    fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() and usuario = ?
+                    and tipo_visita = 'masaje'
+                GROUP BY fecha_visita,mueble order by fecha_visita asc ";
+
+        $q=$this->db->query($sql,array($dias,$usuario));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+        
+        echo $this->db->last_query();
+
+        //$this->db->last_query();
+        
+        $q-> free_result();
+
+        return $resultado;
+
+    }
+    function obtenerVisitasPorUsuarioNumeroDiasMecanismo($usuario = 0, $dias = 8){
+
+        $resultado = array();
+
+        $sql = "SELECT COUNT(mueble)cantidad,mueble,usuario,fecha_visita,ctg_mecanismos.nombre,ctg_mecanismos.id
+                from visitas
+                inner join ctg_mecanismos on ctg_mecanismos.id = visitas.mueble
+                where  
+                    fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() and usuario = ?
+                    and tipo_visita = 'mecanismo'
+                GROUP BY fecha_visita,mueble order by fecha_visita asc ";
+
+        $q=$this->db->query($sql,array($dias,$usuario));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+        
+        echo $this->db->last_query();
+
+        //$this->db->last_query();
+        
+        $q-> free_result();
+
+        return $resultado;
+
+    }
+    function obtenerVisitasPorUsuarioNumeroDiasLogin($usuario = 0, $dias = 8){
+
+        $resultado = array();
+
+        $sql = "SELECT COUNT(visitas.usuario)cantidad,fecha_visita,usuario_vendedor.nombre
+        from visitas inner join usuario_vendedor on usuario_vendedor.id_vendedor = visitas.usuario 
+        where fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() and visitas.usuario= ?
+        and tipo_visita = 'login' GROUP BY fecha_visita,visitas.usuario order by fecha_visita asc";
 
         $q=$this->db->query($sql,array($dias,$usuario));
 
