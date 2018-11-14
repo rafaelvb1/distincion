@@ -27,7 +27,7 @@ class Reportes_model extends CI_Model {
             $resultado=$q->result_array();
         }
         
-        echo $this->db->last_query();
+        //echo $this->db->last_query();
 
         //$this->db->last_query();
         
@@ -55,7 +55,7 @@ class Reportes_model extends CI_Model {
             $resultado=$q->result_array();
         }
         
-        echo $this->db->last_query();
+        //echo $this->db->last_query();
 
         //$this->db->last_query();
         
@@ -83,7 +83,7 @@ class Reportes_model extends CI_Model {
             $resultado=$q->result_array();
         }
         
-        echo $this->db->last_query();
+        //echo $this->db->last_query();
 
         //$this->db->last_query();
         
@@ -108,7 +108,7 @@ class Reportes_model extends CI_Model {
             $resultado=$q->result_array();
         }
         
-        echo $this->db->last_query();
+        //echo $this->db->last_query();
 
         //$this->db->last_query();
         
