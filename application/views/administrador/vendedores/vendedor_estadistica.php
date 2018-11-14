@@ -40,7 +40,7 @@
                                     </div>
                                 </div>     
                                 <div class="portlet-body">    
-                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_2">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_4">
                                         <thead>
                                             <tr>
                                                 <th> Fecha </th>
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>     
                                 <div class="portlet-body">    
-                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_3">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_5">
                                         <thead>
                                             <tr>
                                                 <th> Fecha </th>
@@ -100,7 +100,7 @@
                                     </div>
                                 </div>     
                                 <div class="portlet-body">    
-                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_4">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_6">
                                         <thead>
                                             <tr>
                                                 <th> Fecha </th>
