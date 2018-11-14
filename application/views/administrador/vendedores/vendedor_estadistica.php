@@ -6,7 +6,7 @@
                                 <div class="portlet-title">
                                     <div class="caption font-dark">
                                         <i class="icon-user-follow font-dark"></i>
-                                        <span class="caption-subject bold uppercase"> </span>
+                                        <span class="caption-subject bold uppercase"> Detalle</span>
                                     </div>
                                 </div>
                                 <div class="portlet-body">
@@ -36,7 +36,7 @@
                                 <div class="portlet-title">
                                     <div class="caption font-dark">
                                         <i class="icon-user-follow font-dark"></i>
-                                        <span class="caption-subject bold uppercase"> </span>
+                                        <span class="caption-subject bold uppercase"> Masaje</span>
                                     </div>
                                 </div>     
                                 <div class="portlet-body">    
@@ -66,7 +66,7 @@
                                 <div class="portlet-title">
                                     <div class="caption font-dark">
                                         <i class="icon-user-follow font-dark"></i>
-                                        <span class="caption-subject bold uppercase"> </span>
+                                        <span class="caption-subject bold uppercase"> Mecanismo</span>
                                     </div>
                                 </div>     
                                 <div class="portlet-body">    
@@ -96,7 +96,7 @@
                                 <div class="portlet-title">
                                     <div class="caption font-dark">
                                         <i class="icon-user-follow font-dark"></i>
-                                        <span class="caption-subject bold uppercase"> </span>
+                                        <span class="caption-subject bold uppercase"> Login</span>
                                     </div>
                                 </div>     
                                 <div class="portlet-body">    
