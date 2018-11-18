@@ -241,6 +241,7 @@ class Vendedores_model extends CI_Model {
                   where
                   producto_tienda.tienda_id = ?
                   and productos.estatus = 1
+                  and productos.id_producto_especial =null 
                   order by productos.orden";
 
         $q=$this->db->query($sql,array($tiendaId));
@@ -256,7 +257,36 @@ class Vendedores_model extends CI_Model {
 
         return $resultado;
 
-  	}  	
+      }  	
+      function obtenerMueblesPedidoEspecial($tiendaId,$productoId){
+
+        $resultado = array();
+
+        $sql = "SELECT *, (select path from producto_fotos where producto_id = producto_tienda.producto_id limit 1 ) path FROM productos
+                inner join producto_tienda on producto_tienda.producto_id = productos.id_producto
+                where
+                producto_tienda.tienda_id = ?
+                and productos.id_producto_especial = ?
+                order by productos.orden";
+
+
+
+      $q=$this->db->query($sql,array($tiendaId,$productoId));
+
+      //echo $this->db->last_query();
+
+      if ($q->num_rows() > 0) {
+
+          $resultado=$q->result_array();
+      }
+
+      $this->db->last_query();
+
+      $q-> free_result();
+
+      return $resultado;
+
+    }   
   	
     function validarCredencialesVendedor($usuario,$credencial){
 

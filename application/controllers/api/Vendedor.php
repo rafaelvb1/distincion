@@ -166,7 +166,29 @@ class Vendedor extends REST_Controller {
 			$muebles = $this->mVendedores->obtenerMueblesPorTienda($tiendaId);
 
 			$this->response($muebles, REST_Controller::HTTP_OK);
-		}		
+        }	
+      /**
+    * Obtener mueble por tienda 
+    * Get furniture by store 
+    */
+    public function obtenerMueblesPedidoEspecial_get($tiendaId,$productoId){
+        $tiendaId    = intval($tiendaId);
+        $productoId    = intval($productoId);
+        $muebles = $this->mVendedores->obtenerMueblesPedidoEspecial($tiendaId,$productoId);
+
+        if(!empty($muebles)) {
+            foreach($muebles as $val) {
+                $val['path'] = $val['path'] != '' &&  file_exists( $_SERVER['DOCUMENT_ROOT'].'/img.muebles/'.$val['path'] ) ? base_url().'img.muebles/'.$val['path'] :  base_url().'img.muebles/no-image.png' ;
+                $arr[] = $val;
+            }
+            $response = array("status" => "true", "message" => "Found", "data" => $arr);
+        } else {
+            $response = array("status" => "false", "message" => "Not found");
+        }
+
+        $this->response($response, REST_Controller::HTTP_OK);
+    }   
+        
 		
     /**
     * Obtener detalle mueble por Id
