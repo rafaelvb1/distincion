@@ -94,7 +94,7 @@ defined('MSN_ERROR') or define('MSN_ERROR','Error! valide los datos capturados y
 defined('HOY') or define('HOY',date("Y-m-d H:i:s"));
 defined('LOGIN') or define('LOGIN','admin/distincion-login');
 defined('URL_IMG_TIENDA') or define('URL_IMG_TIENDA',ROOT_PATH.'assets/img_tiendas');
-defined('URL_IMG_PRODUCTO') or define('URL_IMG_PRODUCTO',ROOT_PATH.'img.muebles/');
+defined('URL_IMG_PRODUCTO') or define('URL_IMG_PRODUCTO',ROOT_PATH.'distincion/img.muebles/');
 
 /*defined('ROOT_PATH') or define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"]."/".explode("/" , str_replace($_SERVER["DOCUMENT_ROOT"],'', str_replace('\\','/',__FILE__ ) ) )[1] );*/
 
