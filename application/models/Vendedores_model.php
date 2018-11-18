@@ -205,6 +205,7 @@ class Vendedores_model extends CI_Model {
   	}  	
 
     function obtenerMueblesPorTiendaCategoria($tiendaId,$categoriaId){
+        
 
           $resultado = array();
 
@@ -240,7 +241,7 @@ class Vendedores_model extends CI_Model {
                   where
                   producto_tienda.tienda_id = ?
                   and productos.estatus = 1
-                  order by productos.nombre ";
+                  order by productos.orden";
 
         $q=$this->db->query($sql,array($tiendaId));
 

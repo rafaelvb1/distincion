@@ -163,7 +163,7 @@ class Vendedor extends REST_Controller {
     */
     public function obtenerMueblesPorTienda_get($tiendaId){
 			$tiendaId    = intval($tiendaId);
-			$muebles = $this->mVendedores->obtenerMueblesPorTiendaCategoria($tiendaId);
+			$muebles = $this->mVendedores->obtenerMueblesPorTienda($tiendaId);
 
 			$this->response($muebles, REST_Controller::HTTP_OK);
 		}		
