@@ -255,10 +255,90 @@ class Vendedor extends REST_Controller {
 			     $response = array("status" => "true", "message" => "data found", "data" => $mueble);
 			}else{
 			    $response = array("status" => "false", "message" => "data not found");
-			}
+            }
+            
 
 			$this->response($response, REST_Controller::HTTP_OK);
-	}	
+    }	
+    
+     /**
+    * Obtener detalle mueble por Id y tienda
+    * Get furniture detail and pictures by Id
+    */
+    public function obtenerProductoPorIdFull_get($tiendaId,$productoId){
+        $tipoMasaje = 'n';
+        $tipoMecanismo= 'n';
+
+        $productoId= intval($productoId);
+        $tiendaId= intval($tiendaId);
+        $mueble = $this->mProducto->obtenerProductos($productoId);
+        $fotos  = $this->entidad->getModelBase("producto_fotos",'id_foto,path,orden,producto_id','orden','ASC',array('producto_id'=>$productoId));
+        $videos  = $this->entidad->getModelBase("producto_videos",'id_video,path,nombre','id_video','ASC',array('producto_id'=>$productoId));
+        $fotosProductoMecanismo   = $this->entidad->getModelBase("producto_fotos_mecanismo",'id_foto,path,producto_id','producto_id','ASC',array('producto_id'=>$productoId));
+        $fotosProductoMasaje  = $this->entidad->getModelBase("producto_fotos_masaje",'id_foto,path,producto_id','producto_id','ASC',array('producto_id'=>$productoId));
+        $videosProductoMecanismo = $this->entidad->getModelBase("producto_video_mecanismo",'id_video_mecanismo,path,producto_id,nombre','id_video_mecanismo','ASC',array('producto_id'=>$productoId));
+        $videosProductoMasaje = $this->entidad->getModelBase("producto_video_masaje",'id_video_masaje,path,producto_id,nombre','id_video_masaje','ASC',array('producto_id'=>$productoId));
+        $pedidosEspecial = $this->mVendedores->obtenerMueblesPedidoEspecial($tiendaId,$productoId);
+
+        if(empty($pedidosEspecial)) {
+            $mueble['tienePedidoEspecial'] = false;    
+        }else{
+            $mueble['tienePedidoEspecial'] = true;    
+        }
+
+        $arr = array();
+        $arrFotosMecanismo = array();
+        $arrFotosMasaje = array();
+
+        if(!empty($fotos)) {
+            foreach($fotos as $val) {
+                $val['path'] = $val['path'] != '' &&  file_exists( $_SERVER['DOCUMENT_ROOT'].'/img.muebles/'.$val['path'] ) ? base_url().'img.muebles/'.$val['path'] :  base_url().'img.muebles/no-image.png' ;
+                $arr[] = $val;
+            }
+        }
+        $mueble['fotos'] = $arr;
+        $mueble['videos'] = $videos;
+        // valida tipo de mecanismo
+        if(!empty($fotosProductoMecanismo)){
+            $tipoMecanismo= 'f';
+            foreach($fotosProductoMecanismo as $val) {
+                $val['path'] = $val['path'] != '' &&  file_exists( $_SERVER['DOCUMENT_ROOT'].'/img.muebles/'.$val['path'] ) ? base_url().'img.muebles/'.$val['path'] :  base_url().'img.muebles/no-image.png' ;
+                $arrFotosMecanismo[] = $val;
+            }
+
+            $mueble['datoMecanismo'] = $arrFotosMecanismo;
+
+        }elseif (!empty($videosProductoMecanismo)) {
+            $tipoMecanismo= 'v';
+            $mueble['datoMecanismo'] = $videosProductoMecanismo;
+        } 
+        // valida tipo masaje
+
+        if(!empty($fotosProductoMasaje)){
+            $tipoMasaje= 'f';
+            foreach($fotosProductoMasaje as $val) {
+                $val['path'] = $val['path'] != '' &&  file_exists( $_SERVER['DOCUMENT_ROOT'].'/img.muebles/'.$val['path'] ) ? base_url().'img.muebles/'.$val['path'] :  base_url().'img.muebles/no-image.png' ;
+                $arrFotosMasaje[] = $val;
+            }
+            $mueble['datoMasaje'] = $arrFotosMasaje;
+        }elseif (!empty($videosProductoMasaje)) {
+            $tipoMasaje = 'v';
+            $mueble['datoMasaje'] = $videosProductoMasaje;
+        } 
+
+        $mueble['tipoMecanismo'] = $tipoMecanismo;
+        $mueble['tipoMasaje'] = $tipoMasaje;
+
+        
+        if(!empty($mueble)){
+             $response = array("status" => "true", "message" => "data found", "data" => $mueble);
+        }else{
+            $response = array("status" => "false", "message" => "data not found");
+        }
+        
+
+        $this->response($response, REST_Controller::HTTP_OK);
+    }	
 	
 	
     /**
