@@ -1,7 +1,7 @@
                             <div class="portlet box blue">
                                 <div class="portlet-title">
-                                    <div class="tools">
-                                        <a href="#crearRegistro" tittle="Nuevo" data-toggle="modal" class="config"> </a>
+                                    <div class="actions">
+                                        <a href="#crearRegistro" tittle="Nuevo" data-toggle="modal" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Agregar Tienda </a>
                                     </div>
                                 </div>                               
                                 <div class="portlet-body">
