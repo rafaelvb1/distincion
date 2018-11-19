@@ -241,7 +241,7 @@ class Vendedores_model extends CI_Model {
                   where
                   producto_tienda.tienda_id = ?
                   and productos.estatus = 1
-                  and productos.id_producto_especial =null 
+                  and productos.id_producto_especial is null 
                   order by productos.orden";
 
         $q=$this->db->query($sql,array($tiendaId));
@@ -254,7 +254,7 @@ class Vendedores_model extends CI_Model {
         $this->db->last_query();
 
         $q-> free_result();
-
+        //echo $this->db->last_query();
         return $resultado;
 
       }  	
