@@ -116,43 +116,7 @@
                         </div>
 
                        
-                        <div class="col-md-6">
-                            <!-- BEGIN VALIDATION STATES-->
-                            <div class="portlet light portlet-fit portlet-form bordered">
-                                
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class=" icon-layers font-blue"></i>
-                                            <span class="caption-subject font-blue sbold uppercase">Tiendas Disponibles </span> 
-                                    </div>
-                                </div>
-
-                                <div class="portlet-body">
-                                    <!-- BEGIN FORM-->                                   
-                                        <div class="form-body">
-                                        <?php
-                                        if ( !empty($tiendasProducto) ){
-                                            foreach ($tiendasProducto as $key => $valTiendasProducto) { ?>
-                                            <div class="md-checkbox-list">
-                                                <div class="md-checkbox">
-                                                <input type="checkbox" id="checkbox1_<?php echo $key ?>" <?php echo ($valTiendasProducto['producto'] > 0 ? 'checked=checked':'' ) ?> name="tiendas[]" value="<?php echo $valTiendasProducto['id'] ?>" class="md-check">
-                                                    <label for="checkbox1_<?php echo $key ?>">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> 
-                                                    <?php echo $valTiendasProducto['nombre'] ?></label>
-                                                </div>
-                                            </div>          
-                                        <?php 
-                                           }
-                                        }
-                                        ?>
-                                        </div>
-                                </div>
-
-                            </div>
-                            <!-- END VALIDATION STATES-->
-                        </div>    
+                        
 
                         <div class="col-md-6">
                             <!-- BEGIN VALIDATION STATES-->

@@ -274,7 +274,7 @@
             <!--column left inicio-->
                 <div class="col-md-6">
                     <div class="portlet light portlet-fit portlet-form bordered">
-                        
+                    <?php if( empty($detalleProducto[0]['id_producto_especial'])  ){ ?>
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class=" glyphicon glyphicon-ok font-blue"></i>
@@ -304,7 +304,7 @@
                                 ?>
                                 </div>
                         </div>
-
+                    <?php } ?>   
                     </div>
                     <div class="portlet light portlet-fit portlet-form bordered">
                         
