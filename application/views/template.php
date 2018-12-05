@@ -3,6 +3,7 @@
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
+
 <html lang="en">
     <!--<![endif]-->
     <!-- BEGIN HEAD -->
@@ -113,15 +114,18 @@
                             <!-- END SIDEBAR TOGGLER BUTTON -->
                         </li>
                         <li class="nav-item start ">
+                        <?php if ($this->session->isAdmin) {?>    
                             <a href="<?php echo base_url() ?>admin/inicio" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">Dashboard</span>
                             </a>
+                        <?php } ?>    
                         </li>
                         <li class="heading">
                             <h3 class="uppercase">Opciones</h3>
                         </li>
                         <li class="nav-item  ">
+                        <?php if ($this->session->isAdmin) {?>    
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="fa fa-deviantart"></i>
                                 <span class="title">Muebles</span>
@@ -134,22 +138,30 @@
                                     </a>
                                 </li>
                             </ul>
+                        <?php }?>    
                         </li>
+                        
                         <li class="nav-item  ">
+                        <?php if ($this->session->isAdmin) {?>
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-grid"></i>
                                 <span class="title">Catálogos</span>
                                 <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
+                            
                                 <li class="nav-item  ">
                                     <a href="<?php echo  base_url() ?>admin/catalogos-listado" class="nav-link ">
                                         <span class="title">Listado</span>
                                     </a>
                                 </li>
+                              
                             </ul>
-                        </li>                         
+                            <?php }?> 
+                        </li>    
+                                         
                         <li class="nav-item  ">
+                        <?php if ($this->session->isAdmin) {?>
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-basket"></i>
                                 <span class="title">Tiendas</span>
@@ -162,8 +174,10 @@
                                     </a>
                                 </li>
                             </ul>
+                        <?php }?>    
                         </li>                        
                         <li class="nav-item  ">
+                        <?php if ($this->session->isAdmin) {?>    
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-user"></i>
                                 <span class="title">Usuarios</span>
@@ -176,6 +190,7 @@
                                     </a>
                                 </li>
                             </ul>
+                        <?php } ?>    
                         </li>
                         <li class="nav-item  ">
                             <a href="javascript:;" class="nav-link nav-toggle">

@@ -54,9 +54,14 @@ class Welcome extends CI_Controller {
 				$this->session->estatus          = $accesos[0]['estatus'];
 				$this->session->password          = $accesos[0]['password'];
 				$this->session->isAdmin          = ($accesos[0]['tipo'] == 'admin' ? true:false );
+				$this->session->isAgen          = ($accesos[0]['tipo'] == 'agente' ? true:false );
 				$this->session->logged_in        = true;
-
-        		redirect('admin/inicio');
+				if($this->session->isAgen ){
+					redirect('admin/vendedores-tienda-listado');
+				}else{
+					redirect('admin/inicio');
+				}
+        		
         	}
 
         }
