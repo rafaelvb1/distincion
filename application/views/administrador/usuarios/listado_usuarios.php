@@ -117,6 +117,7 @@
                                                     <div class="form-group form-md-line-input ">
                                                         <select class="form-control" name="tipo" id="tipo">
                                                             <option  value="admin">Administrador</option>
+                                                            <option  value="agente">Agente</option>
                                                             <option  value="vendedor">Vendedor</option>
                                                         </select>
                                                         <label for="tippo">Tipo</label>
@@ -198,6 +199,7 @@
                                                     <div class="form-group form-md-line-input form-md-floating-label">
                                                         <select class="form-control" name="tipo" id="tipo_crear">
                                                             <option  value="admin">Administrador</option>
+                                                            <option  value="agente">Agente</option>
                                                             <option  value="vendedor">Vendedor</option>
                                                         </select>
                                                         <label for="tippo">Tipo</label>
