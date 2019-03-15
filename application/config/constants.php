@@ -90,6 +90,7 @@ defined('ROOT_PATH') or define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"]."/".explod
 defined('ASSETS') or define('ASSETS', '/assets');
 defined('MSN_EXITO') or define('MSN_EXITO','Los datos fueron guardados con éxito');
 defined('MSN_ISADMINISTRADOR') or define('MSN_ISADMINISTRADOR','Lo sentimos, no tiene permisos para ver esta página.');
+defined('MSN_ISAGENTE') or define('MSN_ISAGENTE','Lo sentimos, no tiene permisos para ver esta página.agente');
 defined('MSN_ERROR') or define('MSN_ERROR','Error! valide los datos capturados y/o obligatorios');
 defined('HOY') or define('HOY',date("Y-m-d H:i:s"));
 defined('LOGIN') or define('LOGIN','admin/distincion-login');
@@ -100,3 +101,4 @@ defined('URL_IMG_PRODUCTO') or define('URL_IMG_PRODUCTO',ROOT_PATH.'img.muebles/
 
 
 defined('DASHBOARD') or define('DASHBOARD','admin/inicio');
+defined('VENDEDORES') or define('VENDEDORES','admin/vendedores-tienda-listado');

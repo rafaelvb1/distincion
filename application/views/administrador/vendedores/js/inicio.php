@@ -31,6 +31,41 @@ $('#municipio').on('change', function() {
     });  
 });
 
+//$('#tiendanot').on('change', function() {
+    // BUSCA SUCURSALES POR TIENDA Y LOCALIDAD
+    //var tienda = jQuery("#tiendanot").val();
+    //console.log("Val:"+this.value+" Tienda: "+tienda+" "+"admin/sucursales-listado-tienda-json/"+tienda);
+
+    //$.getJSON( "<?php echo base_url(); ?>admin/sucursales-listado-tienda-json/"+tienda, function( data ) {
+        //console.log(data);
+        //var su = $("#sucursal_id").empty();
+        //su.append($("<option />").val("1").text("-"));
+
+      //  $.each( data, function( key, val ) {
+        //    su.append($("<option />").val(val.id_sucursal).text(val.nombre_sucursal));
+    //    });
+        
+  //  });  
+//});
+$('#tiendanot').on('change', function() {
+    // BUSCA SUCURSALES POR TIENDA Y LOCALIDAD
+    var tienda = jQuery("#tiendanot").val();
+    console.log("Val:"+this.value+" Tienda: "+tienda+" "+"admin/sucursales-listado-tienda-json/"+tienda);
+
+    $.getJSON( "<?php echo base_url(); ?>admin/sucursales-listado-tienda-json/"+tienda, function( data ) {
+        console.log(data);
+        var container = $('#cblist').empty();
+        $.each( data, function( key, val ) {
+            $('<input />', { type: 'checkbox', id: 'cb'+val.id_sucursal, value: val.id_sucursal, class: 'md-check' }).appendTo(container);
+            $('<label />', { 'for': 'cb'+val.id_sucursal, text: val.nombre_sucursal }).appendTo(container);
+            $('<br>').appendTo(container);
+        });
+   
+
+       
+        
+    });  
+});
 
 
 

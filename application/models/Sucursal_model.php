@@ -58,6 +58,43 @@ class Sucursal_model extends CI_Model {
 
         return $resultado;
 
+    }
+    
+    function obtenerSucursales(){
+
+        $resultado = array();
+
+        $sql = "select 
+                su.tienda_id,
+                su.nombre_sucursal, 
+                su.codigo codigo_sucursal, 
+                su.id_sucursal,
+                su.estatus estatus_sucursal,
+                su.usuario_creacion creada_por ,
+                su.nombre_completo_contacto,
+                su.telefono_contacto,
+                su.correo_contacto,
+                su.estado estado_id,
+                su.municipio municipio_id,
+                su.comentarios_contacto,
+                su.cp
+                from sucursal su";
+
+        
+
+        $q=$this->db->query($sql,array());
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+
+        $this->db->last_query();
+        
+        $q-> free_result();
+
+        return $resultado;
+
 	}
 
 

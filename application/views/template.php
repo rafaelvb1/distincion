@@ -220,6 +220,20 @@
                                     </a>
                                 </li>-->
                             </ul>
+                        </li> 
+                        <li class="nav-item  ">
+                            <a href="javascript:;" class="nav-link nav-toggle">
+                                <i class="icon-bell"></i>
+                                <span class="title">Centro de notificaciones</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item  ">
+                                    <a href="<?php echo base_url() ?>admin/notificaciones-push-enviar" class="nav-link ">
+                                        <span class="title">Enviar notificación</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>                        
                     </ul>
                     <!-- END SIDEBAR MENU -->

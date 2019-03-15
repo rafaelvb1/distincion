@@ -221,5 +221,11 @@ class TiendaCtrl extends CI_Controller {
     	echo json_encode( $data['sucursales'] );
 	}
 
+	function sucursalesPorTienda($tienda = 0){
+		$data['sucursales'] = $this->entidad->getModelBase($this->sucursalDb,'id_sucursal,nombre_sucursal','nombre_sucursal','ASC',array('tienda_id'=>$tienda));
+		header('Content-Type: application/json');
+    	echo json_encode( $data['sucursales'] );
+	}
+
 
 }

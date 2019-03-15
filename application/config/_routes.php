@@ -88,6 +88,7 @@ $route['admin/tiendas-sucursal-save']                  = 'administrador/TiendaCt
 $route['admin/tienda-detalle-contacto-json/(:num)']    = 'administrador/TiendaCtrl/verDetalleContacto/$1';
 $route['admin/tienda-desactivar/(:num)/(:num)/(:num)'] = 'administrador/TiendaCtrl/actualizaEstatusTienda/$1/$2/$3';
 $route['admin/sucursales-listado-localidad-json/(:num)/(:num)']  = 'administrador/TiendaCtrl/tiendasPorLocalidad/$1/$2';
+$route['admin/sucursales-listado-tienda-json/(:num)']  = 'administrador/TiendaCtrl/sucursalesPorTienda/$1';
 $route['admin/subir-foto-tienda-logo']                 = 'administrador/TiendaCtrl/subirTiendaFoto';
 
 
