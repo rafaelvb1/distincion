@@ -27,25 +27,9 @@
                                     </select>
                                     <label for="tiendanot">Tienda</label>
                                 </div>
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input type="text" value="<?php echo isset($mensaje)? $mensaje : '' ?>" class="form-control" name="mensaje" id="mensaje">
-                                    <label for="mensaje">Mensaje</label>
-                                </div>                                
-                                <div class="form-body">
-                                    <div class="form-actions">
-                                        <div class="row">
-                                            <div class="col-md-offset-">
-                                                <input type="submit" name="accion" value="Enviar" class="btn btn-lg blue m-icon-big" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>    
-                        </div>    
-                    </div> 
-                </div>   
-                <div class= "col-md-6">                    
-                    <div class="portlet light portlet-fit portlet-form bordered">
+                        </div>  
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class=" glyphicon glyphicon-ok font-blue"></i>
@@ -57,8 +41,35 @@
                                     <div id='cblist' class= "scrollspy-example">
                                     </div>  
                             </div>
-                        </div>     
-                    </div>  
+                        </div>       
+                    </div> 
+                </div>   
+                <div class= "col-md-6">                    
+                    <div class="portlet light portlet-fit portlet-form bordered">
+                        
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class=" glyphicon glyphicon-ok font-blue"></i>
+                                        <span class="caption-subject font-blue sbold uppercase">Mensaje</span> 
+                                </div>
+                            </div>
+                            <div class="portlet-body" >  
+                                <div class="form-body">                
+                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                        <input type="text" value="<?php echo isset($mensaje)? $mensaje : '' ?>" class="form-control" name="mensaje" id="mensaje">
+                                        <label for="mensaje">Mensaje</label>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-">
+                                                    <input type="submit" name="accion" value="Enviar" class="btn btn-lg blue m-icon-big" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                </div>            
+                            </div>    
+                        
+                    </div>    
                 </div>    
             </div>
         </div>
