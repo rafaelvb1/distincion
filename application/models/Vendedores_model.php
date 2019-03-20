@@ -156,6 +156,65 @@ class Vendedores_model extends CI_Model {
         return $resultado;
     }
 
+    function obtenerVendedoresPorTiendaPorEstatusPorSucursal($tiendaId=0,$sucursalId = "0"){
+
+        $resultado = array();
+        $valores   = array();
+
+        $sql = "SELECT
+                vendedor.id_vendedor,
+                vendedor.nombre nombre_vendedor,
+               
+                vendedor.devicetoken,
+                su.id_sucursal,
+                su.nombre_sucursal,
+                ctg.nombre nombre_tienda,
+                ctg.id id_tienda
+                FROM
+                usuario_vendedor vendedor
+                left JOIN sucursal su on su.id_sucursal = vendedor.sucursal_id
+                left join ctg_tienda ctg on ctg.id = su.tienda_id
+                WHERE";
+
+       
+
+            $sql .="
+                ctg.id = ?
+                ";
+
+            array_push($valores,$tiendaId);
+
+       
+
+            $sql .="and vendedor.estatus in (2)
+                    ";
+
+                    
+            
+       
+            // porUsuario
+            $sql .="and vendedor.sucursal_id in (
+                ";
+                $sql .=  $sucursalId;
+
+                $sql .=") ";
+            
+        
+
+        $q=$this->db->query($sql,$valores);
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+
+       // echo $this->db->last_query();
+
+        $q-> free_result();
+
+        return $resultado;
+    }
+
     function validarVendedorValido($correo = "",$celular=""){
 
           $resultado = array();

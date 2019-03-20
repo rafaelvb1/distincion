@@ -19,6 +19,7 @@ class NotificacionesPushCtrl extends CI_Controller {
 		$this->load->model("Vendedores_model","mVendedores");
 		$this->load->model("Sucursal_model"  ,"mSucursal");
 		$this->load->model("Reportes_model","mReportes");
+		
 
 	}
 
@@ -75,6 +76,28 @@ class NotificacionesPushCtrl extends CI_Controller {
 		$sucursalesPush = $datos['sucursales'];
 		$mensajePush = $datos['mensaje'];
 		
+		$sucursalesBusqueda="";
+
+		foreach ($sucursalesPush  as $sucursal) {
+			
+			$sucursalesBusqueda=$sucursalesBusqueda."'".$sucursal."',";
+		}
+		$sucursalesBusqueda=substr($sucursalesBusqueda,0,-1);
+	
+		$vendedores = $this->mVendedores->obtenerVendedoresPorTiendaPorEstatusPorSucursal(8,$sucursalesBusqueda);
+	
+		if ( !empty($vendedores)) {
+
+			
+			foreach ($vendedores as $vendedor) {
+			
+				if(!empty($vendedor['devicetoken'])){
+				
+					$this->enviarNotificacion($vendedor['devicetoken'],$mensajePush);
+				}
+			}
+		}
+		
 		$data['sucursalesAfter'] = $sucursalesPush;
 		$data['mensajeAfter'] = $mensaje;
 
@@ -85,6 +108,7 @@ class NotificacionesPushCtrl extends CI_Controller {
 			$mensaje = "La notificación no pudo ser enviada";
 			$tipoFlashData = "error";
 		}
+		
 
 			// SE AGREGAN TODOS LOS DATOS A MOSTRAR EN $data
 			$this->load->vars($data);   
@@ -92,5 +116,48 @@ class NotificacionesPushCtrl extends CI_Controller {
 			redirect($this->urlRedirecccionNotificaciones);
 			
 			
-	}	
+	}
+	
+	function enviarNotificacion($token,$mensaje="prueba"){
+
+		define('API_ACCESS_KEY','AAAAGFirWtg:APA91bEPvmNLRe4EX9wz2waIkna7obc24sHTspxLMu1oGmsDfgJwW7nmajVVk6n65D-ctxNZFxrA_we46x4i-8SyPm7Mnt1AQ9P-bce0IqHykrhvUdq1b2wlpY3yK8zU_wrEpdkKwLmy');
+		$fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+		//$token='cDVJZCvMOyA:APA91bH1ttuj908QmBi0Q8LmAzwtgmMCk4mr_QAM2KXbqaMucwJm_1QCUC7nqnSZBRjvXSPW_2sD87Cfk6v5UoEB6ZiNOFADs1XbWbHS9nDKTmwhye0_VYvprv0aCA1UswmGqktZtc05';
+	   
+			$notification = [
+				   'title' =>'Notificacion',
+				   'body' => $mensaje,
+				   'icon' =>'myIcon', 
+				   'sound' => 'mySound'
+			   ];
+			   $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
+	   
+			   $fcmNotification = [
+				   //'registration_ids' => $tokenList, //multple token array
+				   'to'        => $token, //single token
+				   'notification' => $notification,
+				   'data' => $extraNotificationData
+			   ];
+	   
+			   $headers = [
+				   'Authorization: key=' . API_ACCESS_KEY,
+				   'Content-Type: application/json'
+			   ];
+	   
+	   
+			   $ch = curl_init();
+			   curl_setopt($ch, CURLOPT_URL,$fcmUrl);
+			   curl_setopt($ch, CURLOPT_POST, true);
+			   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			   curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
+			   $result = curl_exec($ch);
+			   curl_close($ch);
+	   
+	   
+			  // echo $result;
+
+	}
+		
 }

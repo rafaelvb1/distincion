@@ -47,12 +47,12 @@ class Vendedor extends REST_Controller {
         $accesos =$this->mVendedores->validarCredencialesVendedor( strtolower(trim($usuario)) , trim($credencial) ) ;
           
         if( !empty($accesos) ){
-            
-            $wheredata =array( 'usuario' =>  $usuario);
+            $idVendedor= intval($accesos[0]['id_vendedor']);
+            $wheredata =array( 'id_vendedor' =>  $idVendedor );
             $updatedata =array( 'devicetoken' => $devicetoken );
-            $this->mVendedores->updatelogindata( 'usuario_vendedor', $wheredata,   $updatedata ) ;
+            $isUpdate =$this->mVendedores->updatelogindata( 'usuario_vendedor', $wheredata,   $updatedata ) ;
              
-           $response = array("status" => "true", "message" => "Registration successfully completed, please login!", "data" => $accesos[0]);
+           $response = array("status" => "true", "message" => "Registration successfully completed, please login!", "data" => $accesos[0],"token"=>$wheredata,"isUpdate"=>$isUpdate);
         }else{
           $response = array("status" => "false", "message" => "Invalid emailid or password");
         }       
@@ -363,7 +363,25 @@ class Vendedor extends REST_Controller {
         
          $this->response($response, REST_Controller::HTTP_BAD_REQUEST);
 			
-	}	
+    }	
+    
+    public function guardarToken_post(){
+        $data = json_decode(file_get_contents("php://input"));
+        
+        $usuarioId = $data->user_id;
+        $token = $data->token;
+        
+        $resp  = $this->entidad->update($this->visitasMueble,array('usuario'=>$usuarioId,'token'=>$token));
+        
+        if($resp > 0){
+            $response = array("status" => "true", "message" => "Token guardado");
+        }else{
+            $response = array("status" => "false", "message" => "Some error occurred!");
+        } 
+    
+     $this->response($response, REST_Controller::HTTP_BAD_REQUEST);
+        
+}	
 
     /**
     * Guardar vendedor
