@@ -56,7 +56,7 @@ $('#tiendanot').on('change', function() {
         console.log(data);
         var container = $('#cblist').empty();
         $.each( data, function( key, val ) {
-            $('<input />', { type: 'checkbox', id: 'cb'+val.id_sucursal, value: val.id_sucursal, class: 'md-check' }).appendTo(container);
+            $('<input />', { type: 'checkbox', id: 'cb'+val.id_sucursal, value: val.id_sucursal, class: 'md-check', name: 'sucursales[]' }).appendTo(container);
             $('<label />', { 'for': 'cb'+val.id_sucursal, text: val.nombre_sucursal }).appendTo(container);
             $('<br>').appendTo(container);
         });

@@ -5,7 +5,7 @@ class NotificacionesPushCtrl extends CI_Controller {
 
 	private $ctgTiendaTabla      = "ctg_tienda";
 	private $usuariosVendedorDb  = "usuario_vendedor";
-	private $urlRedireccionUsuarios   = "admin/usuarios-listado";
+	private $urlRedirecccionNotificaciones   = "admin/notificaciones-push-enviar";
 
 
 	function NotificacionesPushCtrl()
@@ -70,4 +70,27 @@ class NotificacionesPushCtrl extends CI_Controller {
 
 	}
 
+	function enviarPush(){
+		$datos = $this->input->post();
+		$sucursalesPush = $datos['sucursales'];
+		$mensajePush = $datos['mensaje'];
+		
+		$data['sucursalesAfter'] = $sucursalesPush;
+		$data['mensajeAfter'] = $mensaje;
+
+		if ($mensajePush ) {
+			$mensaje = "La notificación fue enviada con éxito.";
+			$tipoFlashData = "exitoso";
+		}else{
+			$mensaje = "La notificación no pudo ser enviada";
+			$tipoFlashData = "error";
+		}
+
+			// SE AGREGAN TODOS LOS DATOS A MOSTRAR EN $data
+			$this->load->vars($data);   
+			$this->session->set_flashdata($tipoFlashData,$mensaje);
+			redirect($this->urlRedirecccionNotificaciones);
+			
+			
+	}	
 }

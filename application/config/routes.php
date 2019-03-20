@@ -136,6 +136,8 @@ $route['admin/video-masaje-eliminar/(:num)']      = 'administrador/ProductosCtrl
 
 // # NOTIFICACIONEs
 $route['admin/notificaciones-push-enviar']      = 'administrador/NotificacionesPushCtrl/enviar';
+$route['admin/enviar-push']      = 'administrador/NotificacionesPushCtrl/enviarPush';
+
 
 
 
