@@ -75,7 +75,8 @@ class NotificacionesPushCtrl extends CI_Controller {
 		$datos = $this->input->post();
 		$sucursalesPush = $datos['sucursales'];
 		$mensajePush = $datos['mensaje'];
-		
+		$tiendaId=$datos['tiendanot'];
+	
 		$sucursalesBusqueda="";
 
 		foreach ($sucursalesPush  as $sucursal) {
@@ -84,7 +85,7 @@ class NotificacionesPushCtrl extends CI_Controller {
 		}
 		$sucursalesBusqueda=substr($sucursalesBusqueda,0,-1);
 	
-		$vendedores = $this->mVendedores->obtenerVendedoresPorTiendaPorEstatusPorSucursal(8,$sucursalesBusqueda);
+		$vendedores = $this->mVendedores->obtenerVendedoresPorTiendaPorEstatusPorSucursal($tiendaId,$sucursalesBusqueda);
 	
 		if ( !empty($vendedores)) {
 
@@ -94,6 +95,7 @@ class NotificacionesPushCtrl extends CI_Controller {
 				if(!empty($vendedor['devicetoken'])){
 				
 					$this->enviarNotificacion($vendedor['devicetoken'],$mensajePush);
+					
 				}
 			}
 		}
