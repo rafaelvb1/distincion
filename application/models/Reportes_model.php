@@ -222,7 +222,113 @@ class Reportes_model extends CI_Model {
 
         return $resultado;
 
-    }	
+    }
+
+    //estadisticas dashboard por tienda
+    function obtenerMueblesMasVisitadosPorNumeroDiasAndTienda( $dias = 8,$tipo= 'detalle' ){
+
+        $resultado = array();
+
+        $sql = "SELECT visitas.usuario, productos.id_producto,COUNT(mueble)cantidad
+                from visitas inner join productos on productos.id_producto = visitas.mueble 
+                where fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() 
+                and tipo_visita = ? GROUP BY mueble";
+
+        $q=$this->db->query($sql,array($dias,$tipo));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+
+        //echo $this->db->last_query();
+
+        //$this->db->last_query();
+
+        $q-> free_result();
+
+        return $resultado;
+
+    }
+
+    //ESTADISTICAS MASAJE
+    function obtenerMasajeMasVisitadosPorNumeroDiasAndTienda( $dias = 8,$tipo= 'masaje', $tienda= 'tienda' ){
+
+        $resultado = array();
+
+        $sql = "SELECT ctg_masaje.nombre,COUNT(mueble)cantidad
+                from visitas inner join ctg_masaje on ctg_masaje.id = visitas.mueble 
+                where fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() 
+                and tipo_visita = ? GROUP BY mueble";
+
+        $q=$this->db->query($sql,array($dias,$tipo));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+
+        //echo $this->db->last_query();
+
+        //$this->db->last_query();
+
+        $q-> free_result();
+
+        return $resultado;
+
+    }
+
+    function obtenerMecamismoMasVisitadosPorNumeroDiasAndTienda( $dias = 8,$tipo= 'mecanismo', $tienda= 'tienda' ){
+
+        $resultado = array();
+
+        $sql = "SELECT ctg_mecanismos.nombre,COUNT(mueble)cantidad
+                from visitas inner join ctg_mecanismos on ctg_mecanismos.id = visitas.mueble 
+                where fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() 
+                and tipo_visita = ? GROUP BY mueble";
+
+        $q=$this->db->query($sql,array($dias,$tipo));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+
+        //echo $this->db->last_query();
+
+        //$this->db->last_query();
+
+        $q-> free_result();
+
+        return $resultado;
+
+    }
+
+    function obtenerLoginVendedorPorNumeroDiasAndTienda( $dias = 8,$tipo= 'login', $tienda= 'tienda' ){
+
+        $resultado = array();
+
+        $sql = "SELECT usuario_vendedor.nombre,COUNT(visitas.usuario)cantidad
+        from visitas inner join usuario_vendedor on usuario_vendedor.id_vendedor = visitas.usuario 
+        where fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() 
+        and tipo_visita = ? GROUP BY visitas.usuario";
+
+        $q=$this->db->query($sql,array($dias,$tipo));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+
+        //echo $this->db->last_query();
+
+        //$this->db->last_query();
+
+        $q-> free_result();
+
+        return $resultado;
+
+    }
 
 
 

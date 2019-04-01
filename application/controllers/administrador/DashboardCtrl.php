@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class DashboardCtrl extends CI_Controller {
+    private $ctgTiendaTabla      = "ctg_tienda";
 
 
 	function DashboardCtrl()
@@ -31,6 +32,14 @@ class DashboardCtrl extends CI_Controller {
 		$data['listadoMasaje'] = $this->mReportes->obtenerMasajeMasVisitadosPorNumeroDias(8);
 		$data['listadoMecanismo'] = $this->mReportes->obtenerMecamismoMasVisitadosPorNumeroDias(8);
 		$data['listadoLoginVendedor'] = $this->mReportes->obtenerLoginVendedorPorNumeroDias(8);
+		//estadisticas por tienda dashboard
+        $data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda(8);
+        //$data['listadoMasajeTienda'] = $this->mReportes->obtenerMasajeMasVisitadosPorNumeroDiasAndTienda(8);
+        //$data['listadoMecanismoTienda'] = $this->mReportes->obtenerMecamismoMasVisitadosPorNumeroDiasAndTienda(8);
+        //$data['listadoLoginVendedorTienda'] = $this->mReportes->obtenerLoginVendedorPorNumeroDiasAndTienda(8);
+
+        // OBTENER LISTADO DE TIENDAS
+        $data['listadoTiendas'] = $this->entidad->getModelBase($this->ctgTiendaTabla,'id,nombre,estatus','nombre','ASC',null);
 
 		// SE AGREGAN TODOS LOS DATOS A MOSTRAR EN $data
 		$this->load->vars($data);
@@ -47,6 +56,13 @@ class DashboardCtrl extends CI_Controller {
 	    header('Content-Type: application/json');
     	echo json_encode( $data['reportes'] );
 	}
+
+    function getJsonMueblesMasVisitadosPorTienda($id = 0 ){
+        $data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda(8);
+        // SE AGREGAN TODOS LOS DATOS A MOSTRAR EN $data
+        $this->load->vars($data);
+
+    }
 
 
 	

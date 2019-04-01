@@ -67,8 +67,63 @@
         chartLoginVendedor.draw(dataLoginVendedor,options);
     }
 </script>
- 
- 
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box ">
+            <div class="portlet-title blue">
+                <div class="col-md-5">
+                    <div class="caption font-dark">
+                        <i class="fa fa-deviantart font-dark"></i>
+                        <span class="caption-subject bold uppercase"> Estadisticas</span>
+                    </div>
+                </div>    <br>
+                <div class="col-md-5">
+                        <div class="form-body">
+                    <div class="  form-md-line-input form-md-floating-label">
+                        <label for="tiendanot">Tienda</label>
+
+                        <select class="form-control" name="tiendaDashboard" id="tiendaDashboard">
+                            <option value="-1">Selecciona una tienda</option>
+                            <?php foreach ($listadoTiendas  as $key => $valTienda) { ?>
+                                <option  value="<?php echo $valTienda['id'] ?>"><?php echo $valTienda['nombre'] ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                        </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <?php if (!empty($listadoReporteTienda)) { ?>
+                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                    <thead>
+                    <tr>
+                        <th> Vendedor </th>
+                        <th> Modelo </th>
+                        <th> Masaje </th>
+                        <th>  Mecanismo </th>
+                        <th>  Total </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php  foreach ($listadoReporteTienda as $key => $valProductos) { ?>
+
+                        <tr class="odd gradeX">
+                            <td width="15%" > <?php echo $valProductos['usuario'] ?> </td>
+                            <td> <?php echo $valProductos['id_producto'] ?> </td>
+                            <td> <?php echo $valProductos['usuario'] ?> </td>
+                            <td> <?php echo $valProductos['usuario'] ?> </td>
+                            <td> <?php echo $valProductos['usuario'] ?> </td>
+
+                        </tr>
+
+                    <?php } echo "</tbody></table>"; } ?>
+                    <!-- END EXAMPLE TABLE PORTLET-->
+         </div>
+    </div>
+</div>
+
 <h1>Muebles mas visitados últimos 8 días</h1>
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
 
