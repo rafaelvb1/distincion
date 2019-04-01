@@ -111,10 +111,10 @@
 
                         <tr class="odd gradeX">
                             <td width="15%" > <?php echo $valProductos['usuario'] ?> </td>
-                            <td> <?php echo $valProductos['id_producto'] ?> </td>
-                            <td> <?php echo $valProductos['usuario'] ?> </td>
-                            <td> <?php echo $valProductos['usuario'] ?> </td>
-                            <td> <?php echo $valProductos['usuario'] ?> </td>
+                            <td> <?php echo $valProductos['detalle'] ?> </td>
+                            <td> <?php echo $valProductos['masaje'] ?> </td>
+                            <td> <?php echo $valProductos['mecanismo'] ?> </td>
+                            <td> <?php echo $valProductos['total'] ?> </td>
 
                         </tr>
 

@@ -241,7 +241,45 @@ class Reportes_model extends CI_Model {
             $resultado=$q->result_array();
         }
 
-        //echo $this->db->last_query();
+        echo $this->db->last_query();
+
+        //$this->db->last_query();
+
+        $q-> free_result();
+
+        return $resultado;
+
+    }
+
+
+    //estadisticas dashboard por tienda
+    function obtenerMueblesMasVisitadosPorNumeroDiasAndTienda2( $tienda= 0 ){
+
+        $resultado = array();
+
+        $sql = "SELECT ti.nombre ,ti.id as id_tienda,us.id_vendedor,us.usuario,vi.usuario as id_usuario ,count(*), vi.tipo_visita FROM distapp_mobil.visitas as vi
+        join usuario_vendedor as us
+        on vi.usuario=us.id_vendedor
+        join sucursal as su
+        on su.id_sucursal=us.sucursal_id
+        join ctg_tienda as ti
+        on ti.id=su.tienda_id ";
+        
+        if($tienda>0)
+        $sql .="where ti.id=?";
+
+        $sql .=" group by vi.usuario ,tipo_visita 
+        order by id_vendedor";
+
+
+        $q=$this->db->query($sql,array($tienda));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+
+        echo $this->db->last_query();
 
         //$this->db->last_query();
 
