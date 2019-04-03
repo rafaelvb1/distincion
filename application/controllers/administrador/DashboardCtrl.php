@@ -35,7 +35,7 @@ class DashboardCtrl extends CI_Controller {
 		//estadisticas por tienda dashboard
 		//$data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda(8);
 		
-		$data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda2(8);
+		$data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda2(0);
 
 		/*$idTemporal=0;
 		$idTemporalAnterior=0;
