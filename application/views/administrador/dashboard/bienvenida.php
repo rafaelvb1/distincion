@@ -106,7 +106,7 @@
                         <th>  Total </th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="bodyTabla">
                     <?php  foreach ($listadoReporteTienda as $key => $valProductos) { ?>
 
                         <tr class="odd gradeX">

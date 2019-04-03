@@ -35,9 +35,9 @@ class DashboardCtrl extends CI_Controller {
 		//estadisticas por tienda dashboard
 		$data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda(8);
 		
-		$data['listadoAgrupado'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda2(8);
+		$data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda2(8);
 
-		$idTemporal=0;
+		/*$idTemporal=0;
 		$idTemporalAnterior=0;
 		$registroTemporal=array();
 		$registroTemporalAnterior=array();
@@ -91,7 +91,7 @@ class DashboardCtrl extends CI_Controller {
 		
 		}
 		array_push(	$listadoTabla,$registroTemporalAnterior);	
-		$data['listadoReporteTienda']=$listadoTabla;
+		$data['listadoReporteTienda']=$listadoTabla;*/
         //$data['listadoMasajeTienda'] = $this->mReportes->obtenerMasajeMasVisitadosPorNumeroDiasAndTienda(8);
         //$data['listadoMecanismoTienda'] = $this->mReportes->obtenerMecamismoMasVisitadosPorNumeroDiasAndTienda(8);
         //$data['listadoLoginVendedorTienda'] = $this->mReportes->obtenerLoginVendedorPorNumeroDiasAndTienda(8);
@@ -116,9 +116,11 @@ class DashboardCtrl extends CI_Controller {
 	}
 
     function getJsonMueblesMasVisitadosPorTienda($id = 0 ){
-        $data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda(8);
+        $data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda2($id);
         // SE AGREGAN TODOS LOS DATOS A MOSTRAR EN $data
-        $this->load->vars($data);
+		$this->load->vars($data);
+		header('Content-Type: application/json');
+    	echo json_encode( $data['listadoReporteTienda'] );
 
     }
 
