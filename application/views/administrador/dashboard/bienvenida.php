@@ -110,7 +110,7 @@
                     <?php  foreach ($listadoReporteTienda as $key => $valProductos) { ?>
 
                         <tr class="odd gradeX">
-                            <td width="15%" > <?php echo $valProductos['usuario'] ?> </td>
+                            <td> <?php echo $valProductos['usuario'] ?> </td>
                             <td> <?php echo $valProductos['detalle'] ?> </td>
                             <td> <?php echo $valProductos['masaje'] ?> </td>
                             <td> <?php echo $valProductos['mecanismo'] ?> </td>
