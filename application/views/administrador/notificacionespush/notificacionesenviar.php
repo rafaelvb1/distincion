@@ -62,6 +62,7 @@
                                             <div class="row">
                                                 <div class="col-md-offset-">
                                                     <input type="submit" name="accion" value="Enviar" class="btn btn-lg blue m-icon-big" />
+                                                    <input type="submit" name="accion" action="enviarTodas" value="Enviar Todas Sucursales" class="btn btn-lg blue m-icon-big" />
                                                 </div>
                                             </div>
                                         </div>

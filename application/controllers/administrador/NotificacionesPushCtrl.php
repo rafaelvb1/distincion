@@ -5,6 +5,8 @@ class NotificacionesPushCtrl extends CI_Controller {
 
 	private $ctgTiendaTabla      = "ctg_tienda";
 	private $usuariosVendedorDb  = "usuario_vendedor";
+	private $sucursalDb           = "sucursal";
+
 	private $urlRedirecccionNotificaciones   = "admin/notificaciones-push-enviar";
 
 
@@ -76,13 +78,26 @@ class NotificacionesPushCtrl extends CI_Controller {
 		$sucursalesPush = $datos['sucursales'];
 		$mensajePush = $datos['mensaje'];
 		$tiendaId=$datos['tiendanot'];
+		$accion = $datos['accion'];
 	
 		$sucursalesBusqueda="";
 
-		foreach ($sucursalesPush  as $sucursal) {
+		if($accion==="Enviar Todas Sucursales"){
+			echo "entroe";
+			$data['sucursales'] = $this->entidad->getModelBase($this->sucursalDb,'id_sucursal,nombre_sucursal','nombre_sucursal','ASC',array('tienda_id'=>$tiendaId));
+			foreach ($data['sucursales']  as $sucursal) {
+				echo $sucursal["id_sucursal"];
+				$sucursalesBusqueda=$sucursalesBusqueda."'".$sucursal["id_sucursal"]."',";
+			}
+
+		}else{
+			foreach ($sucursalesPush  as $sucursal) {
 			
-			$sucursalesBusqueda=$sucursalesBusqueda."'".$sucursal."',";
+				$sucursalesBusqueda=$sucursalesBusqueda."'".$sucursal."',";
+			}
 		}
+
+		
 		$sucursalesBusqueda=substr($sucursalesBusqueda,0,-1);
 	
 		$vendedores = $this->mVendedores->obtenerVendedoresPorTiendaPorEstatusPorSucursal($tiendaId,$sucursalesBusqueda);
