@@ -225,35 +225,11 @@ class Reportes_model extends CI_Model {
     }
 
     //estadisticas dashboard por tienda
-    function obtenerMueblesMasVisitadosPorNumeroDiasAndTienda( $dias = 8,$tipo= 'detalle' ){
 
-        $resultado = array();
-
-        $sql = "SELECT visitas.usuario, productos.id_producto,COUNT(mueble)cantidad
-                from visitas inner join productos on productos.id_producto = visitas.mueble 
-                where fecha_visita >= DATE_SUB(CURDATE(), INTERVAL ? DAY) and fecha_visita <=CURDATE() 
-                and tipo_visita = ? GROUP BY mueble";
-
-        $q=$this->db->query($sql,array($dias,$tipo));
-
-        if ($q->num_rows() > 0) {
-
-            $resultado=$q->result_array();
-        }
-
-       // echo $this->db->last_query();
-
-        //$this->db->last_query();
-
-        $q-> free_result();
-
-        return $resultado;
-
-    }
 
 
     //estadisticas dashboard por tienda
-    function obtenerMueblesMasVisitadosPorNumeroDiasAndTienda2( $tienda= 0 ){
+    function obtenerMueblesMasVisitadosPorNumeroDiasAndTienda( $tienda= 0 ){
 
         $resultado = array();
 
@@ -340,6 +316,102 @@ class Reportes_model extends CI_Model {
 		}
 		array_push(	$listadoTabla,$registroTemporalAnterior);	
 		$resultado=$listadoTabla;
+
+        return $resultado;
+
+    }
+    //estadisticas dashboard por tienda
+    function obtenerMueblesMasVisitadosPorNumeroDiasAndTienda2( $tienda= 0, $fechaInicio, $fechaFin ){
+
+        $resultado = array();
+
+        $sql = "SELECT ti.nombre ,ti.id as id_tienda,us.id_vendedor,us.usuario,vi.usuario as id_usuario ,count(*), vi.tipo_visita FROM distapp_mobil.visitas as vi
+        join usuario_vendedor as us
+        on vi.usuario=us.id_vendedor
+        join sucursal as su
+        on su.id_sucursal=us.sucursal_id
+        join ctg_tienda as ti
+        on ti.id=su.tienda_id
+        where ";
+
+       if($tienda>0)
+           $sql .=" ti.id=? and vi.fecha_visita >= ? and vi.fecha_visita <=? ";
+
+        if($tienda<=0)
+            $sql .="  vi.fecha_visita >= ? and vi.fecha_visita <=? ";
+
+        $sql .=" group by vi.usuario ,tipo_visita 
+        order by id_vendedor";
+
+
+        $q=$this->db->query($sql,array($tienda));
+
+        if ($q->num_rows() > 0) {
+
+            $resultado=$q->result_array();
+        }
+
+        //echo $this->db->last_query();
+
+        //$this->db->last_query();
+
+        $q-> free_result();
+
+        $idTemporal=0;
+        $idTemporalAnterior=0;
+        $registroTemporal=array();
+        $registroTemporalAnterior=array();
+        $listadoTabla=array();
+
+
+        foreach ($resultado  as $registro) {
+
+
+
+            if($idTemporal==0){
+                $idTemporal=$registro['id_vendedor'];
+
+                $registroTemporal["usuario"] = $registro['usuario'];
+                $registroTemporal["tienda"] = $registro['id_tienda'];
+                $registroTemporal["detalle"] = 0;
+                $registroTemporal["total"] = 0;
+                $registroTemporal["masaje"] = 0;
+                $registroTemporal["mecanismo"] = 0;
+            }else{
+                $idTemporal=$registro['id_vendedor'];
+                if($idTemporalAnterior!=$idTemporal){
+                    $registroTemporalAnterior["total"] = $registroTemporalAnterior["total"] +$registroTemporalAnterior["detalle"]+$registroTemporalAnterior["masaje"]+$registroTemporalAnterior["mecanismo"];
+                    array_push(	$listadoTabla,$registroTemporalAnterior);
+                    $registroTemporal=array();
+                    $registroTemporal["usuario"] = $registro['usuario'];
+                    $registroTemporal["tienda"] = $registro['id_tienda'];
+                    $registroTemporal["detalle"] = 0;
+                    $registroTemporal["total"] = 0;
+                    $registroTemporal["masaje"] = 0;
+                    $registroTemporal["mecanismo"] = 0;
+                }
+
+            }
+
+
+            $registroTemporalAnterior=$registroTemporal;
+
+            if($registro['tipo_visita']=='detalle')
+                $registroTemporal["detalle"] = $registro['count(*)'];
+            if($registro['tipo_visita']=='login')
+                $registroTemporal["login"] = $registro['count(*)'];
+            if($registro['tipo_visita']=='masaje')
+                $registroTemporal["masaje"] = $registro['count(*)'];
+            if($registro['tipo_visita']=='mecanismo')
+                $registroTemporal["mecanismo"] = $registro['count(*)'];
+
+
+
+            $idTemporalAnterior=$registro['id_vendedor'];
+
+        }
+        array_push(	$listadoTabla,$registroTemporalAnterior);
+        $resultado=$listadoTabla;
 
         return $resultado;
 

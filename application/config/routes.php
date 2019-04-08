@@ -68,6 +68,7 @@ $route['admin/actualiza-datos-personales'] = 'Welcome/actualizarDatosPersonales'
 $route['admin/inicio'] = 'administrador/DashboardCtrl/dashboardAdministrador';
 $route['admin/muebles-mas-visitados-json']                = 'administrador/DashboardCtrl/getJsonMueblesMasVisitadoss';
 $route['admin/muebles-mas-visitados-por-tienda-json/(:num)']     = 'administrador/DashboardCtrl/getJsonMueblesMasVisitadosPorTienda/$1';
+$route['admin/muebles-mas-visitados-por-tienda-dias-json/(:num)/(:any)/(:any)']     = 'administrador/DashboardCtrl/getJsonMueblesMasVisitadosPorTienda2/$1/$2/$3';
 
 
 // # CATALOGOS

@@ -78,12 +78,10 @@
                         <i class="fa fa-deviantart font-dark"></i>
                         <span class="caption-subject bold uppercase"> Estadisticas</span>
                     </div>
-                </div>    <br>
-                <div class="col-md-5">
-                        <div class="form-body">
-                    <div class="  form-md-line-input form-md-floating-label">
-                        <label for="tiendanot">Tienda</label>
-
+                </div>    <br><br><br>
+                <div class="row">
+                    <div class="font-dark col-md-2">
+                        <span for="tiendanot">Tienda</span>
                         <select class="form-control" name="tiendaDashboard" id="tiendaDashboard">
                             <option value="-1">Selecciona una tienda</option>
                             <?php foreach ($listadoTiendas  as $key => $valTienda) { ?>
@@ -91,7 +89,38 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <div class="font-dark col-md-4">
+                        <span >Desde</span>
+                        <div class="form-group">
+                            <div class='input-group date' name="datetimepicker1"  id="datetimepicker1">
+                                <input type='text' class="form-control"  name="datetimepicker3"  id="datetimepicker3"/>
+                                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
                         </div>
+                    </div>
+                    <div class="font-dark col-md-4">
+                        <span >Hasta</span>
+                        <div class="form-group">
+                            <div class='input-group date' name="datetimepicker2" id="datetimepicker2">
+                                <input type='text' class="form-control"  name="datetimepicker4"  id="datetimepicker4"/>
+                                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="font-dark col-md-2">
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-">
+                                    <br>
+                                    <input type="submit" value="Buscar" class="btn btn-default btn-sm"  name="buscador"  id="buscador"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="portlet-body">
