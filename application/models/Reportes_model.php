@@ -344,7 +344,7 @@ class Reportes_model extends CI_Model {
         order by id_vendedor";
 
 
-        $q=$this->db->query($sql,array($tienda));
+        $q=$this->db->query($sql,array($tienda,$fechaInicio,$fechaFin));
 
         if ($q->num_rows() > 0) {
 
