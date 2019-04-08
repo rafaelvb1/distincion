@@ -337,8 +337,8 @@ class Reportes_model extends CI_Model {
        if($tienda>0)
            $sql .=" ti.id=? and vi.fecha_visita >= ? and vi.fecha_visita <=? ";
 
-        if($tienda<=0)
-            $sql .="  vi.fecha_visita >= ? and vi.fecha_visita <=? ";
+        //if($tienda<=0)
+          //  $sql .="  vi.fecha_visita >= ? and vi.fecha_visita <=? ";
 
         $sql .=" group by vi.usuario ,tipo_visita 
         order by id_vendedor";
