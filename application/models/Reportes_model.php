@@ -351,7 +351,7 @@ class Reportes_model extends CI_Model {
             $resultado=$q->result_array();
         }
 
-        //echo $this->db->last_query();
+       // echo $this->db->last_query();
 
         //$this->db->last_query();
 
@@ -396,15 +396,23 @@ class Reportes_model extends CI_Model {
 
             $registroTemporalAnterior=$registroTemporal;
 
-            if($registro['tipo_visita']=='detalle')
-                $registroTemporal["detalle"] = $registro['count(*)'];
-            if($registro['tipo_visita']=='login')
-                $registroTemporal["login"] = $registro['count(*)'];
-            if($registro['tipo_visita']=='masaje')
-                $registroTemporal["masaje"] = $registro['count(*)'];
-            if($registro['tipo_visita']=='mecanismo')
-                $registroTemporal["mecanismo"] = $registro['count(*)'];
-
+            if($registro['tipo_visita']=='detalle'){
+                $registroTemporalAnterior["detalle"] = $registro['count(*)'];
+            }
+                
+            if($registro['tipo_visita']=='login'){
+                $registroTemporalAnterior["login"] = $registro['count(*)'];
+            }
+                
+            if($registro['tipo_visita']=='masaje'){
+                $registroTemporalAnterior["masaje"] = $registro['count(*)'];
+            }
+                
+            if($registro['tipo_visita']=='mecanismo'){
+                $registroTemporalAnterior["mecanismo"] = $registro['count(*)'];
+            }
+                
+            $registroTemporal=$registroTemporalAnterior;
 
 
             $idTemporalAnterior=$registro['id_vendedor'];
