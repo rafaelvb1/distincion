@@ -33,68 +33,9 @@ class DashboardCtrl extends CI_Controller {
 		$data['listadoMecanismo'] = $this->mReportes->obtenerMecamismoMasVisitadosPorNumeroDias(8);
 		$data['listadoLoginVendedor'] = $this->mReportes->obtenerLoginVendedorPorNumeroDias(8);
 		//estadisticas por tienda dashboard
-		//$data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda(8);
-		
-		$data['listadoReporteTienda'] = $this->mReportes->obtenerMueblesMasVisitadosPorNumeroDiasAndTienda(0);
+        $listadoReporteTienda["usuario"] = 0;
 
-		/*$idTemporal=0;
-		$idTemporalAnterior=0;
-		$registroTemporal=array();
-		$registroTemporalAnterior=array();
-		$listadoTabla=array();
-
-
-		foreach ($data['listadoAgrupado']   as $registro) {
-			
-			echo 	$registro['id_vendedor']; 
-			
-			if($idTemporal==0){
-				$idTemporal=$registro['id_vendedor'];
-
-				$registroTemporal["usuario"] = $registro['usuario'];
-				$registroTemporal["tienda"] = $registro['id_tienda'];
-				$registroTemporal["detalle"] = 0;
-				$registroTemporal["total"] = 0;
-				$registroTemporal["masaje"] = 0;
-				$registroTemporal["mecanismo"] = 0;
-			}else{
-				$idTemporal=$registro['id_vendedor'];
-				if($idTemporalAnterior!=$idTemporal){
-					$registroTemporalAnterior["total"] = $registroTemporalAnterior["total"] +$registroTemporalAnterior["detalle"]+$registroTemporalAnterior["masaje"]+$registroTemporalAnterior["mecanismo"];
-					array_push(	$listadoTabla,$registroTemporalAnterior);	
-					$registroTemporal=array();
-					$registroTemporal["usuario"] = $registro['usuario'];
-					$registroTemporal["tienda"] = $registro['id_tienda'];
-					$registroTemporal["detalle"] = 0;
-					$registroTemporal["total"] = 0;
-					$registroTemporal["masaje"] = 0;
-					$registroTemporal["mecanismo"] = 0;
-				}
-
-			}
-
-			
-			$registroTemporalAnterior=$registroTemporal;
-
-			if($registro['tipo_visita']=='detalle')
-				$registroTemporal["detalle"] = $registro['count(*)'];
-			if($registro['tipo_visita']=='login')
-				$registroTemporal["login"] = $registro['count(*)'];
-			if($registro['tipo_visita']=='masaje')
-				$registroTemporal["masaje"] = $registro['count(*)'];
-			if($registro['tipo_visita']=='mecanismo')
-				$registroTemporal["mecanismo"] = $registro['count(*)'];
-
-            
-		
-			$idTemporalAnterior=$registro['id_vendedor'];
-		
-		}
-		array_push(	$listadoTabla,$registroTemporalAnterior);	
-		$data['listadoReporteTienda']=$listadoTabla;*/
-        //$data['listadoMasajeTienda'] = $this->mReportes->obtenerMasajeMasVisitadosPorNumeroDiasAndTienda(8);
-        //$data['listadoMecanismoTienda'] = $this->mReportes->obtenerMecamismoMasVisitadosPorNumeroDiasAndTienda(8);
-        //$data['listadoLoginVendedorTienda'] = $this->mReportes->obtenerLoginVendedorPorNumeroDiasAndTienda(8);
+		$data['listadoReporteTienda']=$listadoReporteTienda;
 
         // OBTENER LISTADO DE TIENDAS
         $data['listadoTiendas'] = $this->entidad->getModelBase($this->ctgTiendaTabla,'id,nombre,estatus','nombre','ASC',null);
