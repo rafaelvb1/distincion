@@ -410,9 +410,12 @@ class Reportes_model extends CI_Model {
             $idTemporalAnterior=$registro['id_vendedor'];
 
         }
+       if ($resultado) {
         $registroTemporalAnterior["total"] = $registroTemporalAnterior["total"] +$registroTemporalAnterior["detalle"]+$registroTemporalAnterior["masaje"]+$registroTemporalAnterior["mecanismo"];
         array_push(	$listadoTabla,$registroTemporalAnterior);
         $resultado=$listadoTabla;
+       }
+       
 
         return $resultado;
 
