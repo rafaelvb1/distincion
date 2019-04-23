@@ -321,8 +321,8 @@ class Vendedores_model extends CI_Model {
 
         $resultado = array();
 
-        $sql = "SELECT *, (select path from producto_fotos where producto_id = producto_tienda.producto_id limit 1 ) path FROM productos
-                inner join producto_tienda on producto_tienda.producto_id = productos.id_producto
+        $sql = "SELECT *, (select path from producto_fotos where producto_id = productos.id_producto limit 1 ) path FROM productos
+                inner join producto_tienda on producto_tienda.producto_id = productos.id_producto_especial
                 where
                 producto_tienda.tienda_id = ?
                 and productos.id_producto_especial = ?
