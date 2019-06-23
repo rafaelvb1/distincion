@@ -463,7 +463,7 @@ class Vendedor extends REST_Controller {
                         $to = "$correo";
                         $subject = "Regsitration successfully completed!.";
                         $txt = "Hello User, Your registration on furniture app successfully completed, please login";
-                        $headers = "From: distiction app <Vljc2004@gmail.com>" . "\r\n";
+                        $headers = "From: Distinción App <Vljc2004@gmail.com>" . "\r\n";
                         
                         $isSend = mail($to,$subject,$txt,$headers);
             
@@ -511,7 +511,7 @@ class Vendedor extends REST_Controller {
             $to = "$email";
             $subject = "Cambio Password.";
             $txt = "Hola, tu nueva contraseña es $newpass ";
-            $headers = "From: distiction app <Vljc2004@gmail.com>" . "\r\n";
+            $headers = "From: Distinción App <Vljc2004@gmail.com>" . "\r\n";
             
             $isSend = mail($to,$subject,$txt,$headers);
             
